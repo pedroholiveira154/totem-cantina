@@ -1,0 +1,312 @@
+{
+    "produtos": [
+        {
+            "id": 1,
+            "nome": "Coxinha",
+            "descricao": "Massa de batata recheada com frango",
+            "preco": 8.00,
+            "quantidade": 5,
+            "categoriaId": 1,
+            "imagem": "img/imgCardapio/coxinha.jpg",
+            "disponivel": true
+        },
+        {
+            "id": 2,
+            "nome": "Coxinha",
+            "descricao": "Massa de batata recheada com frango",
+            "preco": 8.00,
+            "quantidade": 5,
+            "categoriaId": 1,
+            "imagem": "img/imgCardapio/coxinha.jpg",
+            "disponivel": true
+        },
+        {
+            "id": 2,
+            "nome": "Coxinha",
+            "descricao": "Massa de batata recheada com frango",
+            "preco": 8.00,
+            "quantidade": 5,
+            "categoriaId": 1,
+            "imagem": "img/imgCardapio/coxinha.jpg",
+            "disponivel": true
+        },
+        {
+            "id": 2,
+            "nome": "Coxinha",
+            "descricao": "Massa de batata recheada com frango",
+            "preco": 8.00,
+            "quantidade": 5,
+            "categoriaId": 1,
+            "imagem": "img/imgCardapio/coxinha.jpg",
+            "disponivel": true
+        },
+        {
+            "id": 2,
+            "nome": "Coxinha",
+            "descricao": "Massa de batata recheada com frango",
+            "preco": 8.00,
+            "quantidade": 5,
+            "categoriaId": 1,
+            "imagem": "img/imgCardapio/coxinha.jpg",
+            "disponivel": true
+        },
+        {
+            "id": 2,
+            "nome": "Coxinha",
+            "descricao": "Massa de batata recheada com frango",
+            "preco": 8.00,
+            "quantidade": 5,
+            "categoriaId": 1,
+            "imagem": "img/imgCardapio/coxinha.jpg",
+            "disponivel": true
+        },
+        {
+            "id": 2,
+            "nome": "Coxinha",
+            "descricao": "Massa de batata recheada com frango",
+            "preco": 8.00,
+            "quantidade": 5,
+            "categoriaId": 1,
+            "imagem": "img/imgCardapio/coxinha.jpg",
+            "disponivel": true
+        },
+        {
+            "id": 2,
+            "nome": "Coxinha",
+            "descricao": "Massa de batata recheada com frango",
+            "preco": 8.00,
+            "quantidade": 5,
+            "categoriaId": 1,
+            "imagem": "img/imgCardapio/coxinha.jpg",
+            "disponivel": true
+        },
+        {
+            "id": 2,
+            "nome": "Coxinha",
+            "descricao": "Massa de batata recheada com frango",
+            "preco": 8.00,
+            "quantidade": 5,
+            "categoriaId": 1,
+            "imagem": "img/imgCardapio/coxinha.jpg",
+            "disponivel": true
+        },
+        {
+            "id": 2,
+            "nome": "Coxinha",
+            "descricao": "Massa de batata recheada com frango",
+            "preco": 8.00,
+            "quantidade": 5,
+            "categoriaId": 1,
+            "imagem": "img/imgCardapio/coxinha.jpg",
+            "disponivel": true
+        },
+        {
+            "id": 2,
+            "nome": "Coxinha",
+            "descricao": "Massa de batata recheada com frango",
+            "preco": 8.00,
+            "quantidade": 5,
+            "categoriaId": 1,
+            "imagem": "img/imgCardapio/coxinha.jpg",
+            "disponivel": true
+        },
+        {
+            "id": 2,
+            "nome": "Coxinha",
+            "descricao": "Massa de batata recheada com frango",
+            "preco": 8.00,
+            "quantidade": 5,
+            "categoriaId": 1,
+            "imagem": "img/imgCardapio/coxinha.jpg",
+            "disponivel": true
+        },
+        {
+            "id": 2,
+            "nome": "Coxinha",
+            "descricao": "Massa de batata recheada com frango",
+            "preco": 8.00,
+            "quantidade": 5,
+            "categoriaId": 1,
+            "imagem": "img/imgCardapio/coxinha.jpg",
+            "disponivel": true
+        },
+        {
+            "id": 2,
+            "nome": "Coxinha",
+            "descricao": "Massa de batata recheada com frango",
+            "preco": 8.00,
+            "quantidade": 5,
+            "categoriaId": 1,
+            "imagem": "img/imgCardapio/coxinha.jpg",
+            "disponivel": true
+        },
+        {
+            "id": 2,
+            "nome": "Coxinha",
+            "descricao": "Massa de batata recheada com frango",
+            "preco": 8.00,
+            "quantidade": 5,
+            "categoriaId": 1,
+            "imagem": "img/imgCardapio/coxinha.jpg",
+            "disponivel": true
+        },
+        {
+            "id": 2,
+            "nome": "Coxinha",
+            "descricao": "Massa de batata recheada com frango",
+            "preco": 8.00,
+            "quantidade": 5,
+            "categoriaId": 1,
+            "imagem": "img/imgCardapio/coxinha.jpg",
+            "disponivel": true
+        },
+        {
+            "id": 2,
+            "nome": "Coxinha",
+            "descricao": "Massa de batata recheada com frango",
+            "preco": 8.00,
+            "quantidade": 5,
+            "categoriaId": 1,
+            "imagem": "img/imgCardapio/coxinha.jpg",
+            "disponivel": true
+        },
+        {
+            "id": 2,
+            "nome": "Coxinha",
+            "descricao": "Massa de batata recheada com frango",
+            "preco": 8.00,
+            "quantidade": 5,
+            "categoriaId": 1,
+            "imagem": "img/imgCardapio/coxinha.jpg",
+            "disponivel": true
+        },
+        {
+            "id": 2,
+            "nome": "Coxinha",
+            "descricao": "Massa de batata recheada com frango",
+            "preco": 8.00,
+            "quantidade": 5,
+            "categoriaId": 1,
+            "imagem": "img/imgCardapio/coxinha.jpg",
+            "disponivel": true
+        },
+        {
+            "id": 2,
+            "nome": "Coxinha",
+            "descricao": "Massa de batata recheada com frango",
+            "preco": 8.00,
+            "quantidade": 5,
+            "categoriaId": 1,
+            "imagem": "img/imgCardapio/coxinha.jpg",
+            "disponivel": true
+        },
+        {
+            "id": 2,
+            "nome": "Coxinha",
+            "descricao": "Massa de batata recheada com frango",
+            "preco": 8.00,
+            "quantidade": 5,
+            "categoriaId": 1,
+            "imagem": "img/imgCardapio/coxinha.jpg",
+            "disponivel": true
+        },
+        {
+            "id": 2,
+            "nome": "Coxinha",
+            "descricao": "Massa de batata recheada com frango",
+            "preco": 8.00,
+            "quantidade": 5,
+            "categoriaId": 1,
+            "imagem": "img/imgCardapio/coxinha.jpg",
+            "disponivel": true
+        },
+        {
+            "id": 2,
+            "nome": "Coxinha",
+            "descricao": "Massa de batata recheada com frango",
+            "preco": 8.00,
+            "quantidade": 5,
+            "categoriaId": 1,
+            "imagem": "img/imgCardapio/coxinha.jpg",
+            "disponivel": true
+        },
+        {
+            "id": 2,
+            "nome": "Coxinha",
+            "descricao": "Massa de batata recheada com frango",
+            "preco": 8.00,
+            "quantidade": 5,
+            "categoriaId": 1,
+            "imagem": "img/imgCardapio/coxinha.jpg",
+            "disponivel": true
+        },
+        {
+            "id": 2,
+            "nome": "Coxinha",
+            "descricao": "Massa de batata recheada com frango",
+            "preco": 8.00,
+            "quantidade": 5,
+            "categoriaId": 1,
+            "imagem": "img/imgCardapio/coxinha.jpg",
+            "disponivel": true
+        }
+    ],
+    "categorias": [
+        {
+            "id": 1,
+            "nome": "Salgados"
+        },
+        {
+            "id": 2,
+            "nome": "Bebidas"
+        },
+        {
+            "id": 3,
+            "nome": "Sobremesas"
+        }
+    ],
+    "pedidos": [
+        {
+            "id": 1,
+            "numeroPedido": "A001",
+            "data": "2026-06-08T15:30:00",
+            "itens": [
+                {
+                    "produtoId": 1,
+                    "quantidade": 2,
+                    "precoUnitario": 8.00
+                }
+            ],
+            "formaPagamento": "PIX",
+            "status": "Pago",
+            "total": 22.00
+        },
+                {
+            "id": 2,
+            "numeroPedido": "A002",
+            "data": "2026-06-08T15:30:00",
+            "itens": [
+                {
+                    "produtoId": 1,
+                    "quantidade": 2,
+                    "precoUnitario": 8.00
+                }
+            ],
+            "formaPagamento": "PIX",
+            "status": "Cancelado",
+            "total": 22.00
+        }
+    ],
+    "admins": [
+        {
+            "id": 0,
+            "usuario": "root",
+            "senha": "senai"
+        },
+        {
+            "id": 1,
+            "usuario": "admin",
+            "senha": "123456"
+        }
+    ]
+}

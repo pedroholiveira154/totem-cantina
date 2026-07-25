@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardapio</title>
+    <link rel="stylesheet" href="_css/style.css">
+</head>
+
+<body id="pagina-cardapio">
+    <header>
+        <div class="triangulo-vermelho"></div>
+        <div class="index-conteudo">
+            <div class="header-principal">
+                <h1 id="cantina">CANTINA</h1>
+                <div class="index-caixa-branca">
+                    <img src="img/senai.jpg" alt="" id="senai-img">
+                </div>
+            </div>
+    </header>
+
+    <main>
+        <div class="cardapio-caixaPrincipal">
+            <div class="cardapio-caixa-header">
+                <h1>Olá, <span id="nome-cliente"></span><span>!!!</span> </h1>
+                <button onclick="retornar()">Voltar</button>
+            </div>
+
+            <div class="cardapio-caixa-conteudo">
+                <div class="cardapio-caixa-sidebar">
+                    <button>XXXXXXXXX</button><button>XXXXXXXXX</button><button>XXXXXXXXX</button><button>XXXXXXXXX</button><button>XXXXXXXXX</button><button>XXXXXXXXX</button>
+                </div>
+                
+                <div class="cardapio">
+                    <div id="cardapio"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <button onclick="direcionarPedido()">VERIFICAR PEDIDO</button>
+    </footer>
+
+    <script src="_js/script.js"></script>
+</body>
+
+</html>

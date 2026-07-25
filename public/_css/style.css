@@ -1,0 +1,312 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+}
+
+main {
+  position: relative;
+  /* contexto de empilhamento para os filhos */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* h1 {
+  font-weight: bold;
+  color: #A50000;
+  text-shadow: rgb(187, 183, 183) -4px -3px 3px;
+  /* transform: rotate(90deg); */
+/* } */
+
+.index-conteudo {
+  position: relative;
+  /* necessário para z-index funcionar */
+  z-index: 1;
+  /* maior que o triângulo */
+}
+
+/* ------------------HEADER PRINCIPAL-------------------- */
+.triangulo-vermelho {
+  position: absolute;
+  /* REMOVA o "position: static" duplicado */
+  z-index: 0;
+  width: 100%;
+  height: 600px;
+  top: -120px;
+  background: red;
+  clip-path: polygon(0 0, 0 100%, 130% 0);
+  pointer-events: none;
+}
+
+.header-principal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.header-principal #cantina {
+  color: white;
+  font-size: 170px;
+  font-style: italic;
+  text-shadow: #A50000 13px 7px 2px;
+}
+
+.index-caixa-branca {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 540px;
+  height: 155px;
+  background-color: white;
+  border-radius: 7px;
+}
+
+#senai-img {
+  width: 500px;
+  margin: 5px;
+}
+
+.quadrado-vermelho {
+  position: absolute;
+  bottom: -200px;
+  /* empurra pra fora da tela */
+  left: 50%;
+  transform: translateX(-50%) rotate(-10deg);
+
+  width: 200vw;
+  /* MUITO largo */
+  height: 500px;
+  /* altura do fundo */
+
+  background-color: #A50000;
+  border-radius: 3rem;
+
+  z-index: 0;
+  /* fica atrás */
+}
+
+
+
+/* ----------------INDEX_CAIXA DE PEDIDO-------------------- */
+.index-caixa-pedido {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.index-caixa-pedido h1 {
+  font-weight: bold;
+  font-size: 10.625em;
+  color: #A50000;
+  text-shadow: rgb(187, 183, 183) -4px -3px 3px;
+  transform: rotate(-5deg);
+  transform-origin: center;
+}
+
+.index-caixa-pedido-superior {
+  text-align: center;
+  flex-wrap: wrap;
+  max-width: 25rem;
+
+  background-image: linear-gradient(to bottom, #929393, #2D2D2D);
+  border-radius: 1.3rem 1rem 0 0;
+  color: white;
+  padding: 5em;
+  font-weight: bold;
+}
+
+.index-caixa-pedido-superior p {
+  font-size: 2rem;
+}
+
+.index-caixa-pedido-superior input {
+  text-align: center;
+
+  background-color: #000000b0;
+  border-radius: 1.1em;
+  font-size: 1.7rem;
+  padding: 1rem;
+  width: 10em;
+  color: white;
+  margin-bottom: 1.25em;
+}
+
+.index-caixa-pedido-inferior {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+.index-caixa-pedido-inferior button {
+  width: 29.3rem;
+  max-width: 29.3rem;
+  height: 4rem;
+
+  background-image: linear-gradient(to bottom, #000000e3, #FF0D0D);
+  color: white;
+  font-weight: bold;
+  border-radius: 0 0 1rem 1.3rem;
+  border: none;
+  cursor: pointer;
+  font-size: 1.8rem;
+}
+
+/* ----------INDEX_COMIDAS NO FINAL DA PÁGINA----------- */
+.index-comidas-agrupadas {
+  position: relative;
+  /* IMPORTANTE */
+  z-index: 2;
+  /* acima do quadrado */
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 20px;
+
+}
+
+.index-comidas-agrupadas img {
+  position: relative;
+  /* sobreposição */
+}
+
+.index-comidas-agrupadas img:nth-child(1) {
+  z-index: 1;
+  width: 17.5rem;
+  transform: rotate(-15deg);
+  margin-right: -200px;
+  margin-bottom: 60px;
+}
+
+.index-comidas-agrupadas img:nth-child(2) {
+  z-index: 2;
+  width: 39rem;
+  margin-left: -200px;
+}
+
+.index-comidas-agrupadas img:nth-child(3) {
+  z-index: 3;
+  width: 32rem;
+  margin-left: -300px;
+}
+
+.index-comidas-agrupadas img:nth-child(4) {
+  z-index: 2;
+  width: 24rem;
+  transform: scaleX(-1);
+  margin-left: -200px;
+}
+
+.index-comidas-agrupadas img:nth-child(5) {
+  z-index: 1;
+  width: 22rem;
+  transform: rotate(15deg);
+  margin-left: -300px;
+  margin-right: -2rem;
+  margin-bottom: 60px;
+}
+
+
+/* ---------------------CARDAPIO------------------- */
+.cardapio-caixaPrincipal {
+  width: 100vw;
+  background-color: white;
+  box-shadow: 60px 16px black;
+}
+
+.cardapio-caixa-header {
+  display: flex;
+  flex-direction: row;
+}
+
+.cardapio-caixa-conteudo {
+  display: flex;
+  flex-direction: row;
+}
+
+.cardapio-caixa-sidebar {
+  display: flex;
+  flex-direction: column;
+}
+
+#cardapio {
+  display: grid;
+  grid-template-columns:
+    [inicio] 1fr [metade-1 meio-1] 1fr [fim];
+}
+
+#cardapio img {
+  width: 10rem;
+}
+
+#produtoCard {
+  color: #7c0000;
+  padding: 2rem;
+}
+
+.produtoCima {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+
+  border: #BEBEBE solid 2px;
+  border-bottom: none;
+  border-radius: 1rem 1.3rem 0 0;
+  padding: 1.5rem;
+}
+
+.produtoBaixo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+
+  border: #BEBEBE solid 2px;
+  border-top: black solid 1px;
+  border-radius: 0 0 1rem 1.3rem;
+  box-shadow: #828282 2px 2px;
+  box-shadow: #A32222 4px 4px;
+  padding: 1rem;
+}
+
+.produtoBaixo:hover {
+  cursor: pointer;
+}
+
+.produtoBaixo p {
+  font-size: 1em;
+}
+
+#nomeProdutoCard {
+  font-size: 1em;
+  font-weight: bold;
+}
+
+#produtoPrecoEnfase {
+  font-size: 1.1em;
+}
+
+footer{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  background-color: white;
+  z-index: 3;
+  padding: 10rem;
+}
+
+footer button{
+  background-color: #FF0D0D;
+  color: white;
+  width: 10rem;
+  height: 5rem;
+}
