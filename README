@@ -1,8 +1,6 @@
 //Inicia o servidor
 //npx json-server --watch db.json --port 3000
 
-Perfeito. Se você é colaborador do projeto no GitHub, o processo é bem simples. O ideal é não usar git init. Você deve fazer um clone do repositório.
-
 Passo 1: Copie a URL do repositório
 
 No GitHub:
@@ -11,23 +9,25 @@ Abra o repositório.
 Clique em Code.
 Copie a URL HTTPS, por exemplo:
 https://github.com/pedroholiveira154/totem-cantina.git
-Passo 2: Abra o terminal na pasta onde deseja salvar o projeto
 
-Exemplo:
+Passo 2: Crie uma pasta
 
-cd "C:\Users\Aluno\Downloads\Nova pasta"
+Em qualquer área do PC, crie uma pasta e a nomeie como quiser
+Em seguida, abra a pasta no VSCODE
 
-Verifique que a pasta está vazia:
-
-dir
 Passo 3: Clone o repositório
+
+Abra o terminal do VSCODE e insira o seguinte código:
 git clone https://github.com/pedroholiveira154/totem-cantina.git
 
 Isso criará uma pasta chamada totem-cantina.
 
 Passo 4: Entre na pasta do projeto
+
 cd totem-cantina
+
 Passo 5: Verifique se está tudo certo
+
 git status
 
 Você deverá ver algo parecido com:
@@ -36,37 +36,23 @@ On branch main
 Your branch is up to date with 'origin/main'.
 
 nothing to commit, working tree clean
-Passo 6: Faça suas alterações
 
-Edite os arquivos normalmente.
+Passo final: Faça suas alterações
 
-Passo 7: Veja o que mudou
-git status
-Passo 8: Adicione os arquivos ao commit
-
-Se quiser adicionar tudo:
-
-git add .
-Passo 9: Crie um commit
-git commit -m "Descrição da alteração"
-
-Exemplo:
-
-git commit -m "Corrige tela de login"
-Passo 10: Antes de enviar, atualize sua cópia
-
+Antes de enviar, atualize sua cópia
 Isso evita conflitos com alterações feitas por outros colaboradores.
 
 git pull origin main
 
 Se não houver conflitos, siga para o próximo passo.
 
-Passo 11: Envie suas alterações
+Passo final-2: Envie suas alterações
+
+git add . (adiciona todas alterações)
+
+git commit -m "Explique a alteração aqui de forma simples"
+
 git push origin main
-
-Se você tem permissão de escrita no repositório, o commit será enviado.
-
-Fluxo resumido
 
 Sempre que for trabalhar:
 
@@ -76,7 +62,3 @@ git add .
 git commit -m "Minha alteração"
 git push origin main
 Se aparecer erro de autenticação
-
-Como o GitHub não aceita mais senha para operações Git via HTTPS, você precisará autenticar usando um navegador (Git Credential Manager) ou um token de acesso pessoal (PAT). Se isso acontecer, mostre a mensagem de erro que eu explico como configurar.
-
-Se o projeto usa outra estratégia, como abrir Pull Requests em vez de enviar diretamente para main, também posso orientar esse fluxo.
