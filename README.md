@@ -45,6 +45,12 @@ Você deverá ver algo parecido com:
 
 Se não houver conflitos, siga para o próximo passo.
 
+## Passo 7: Se identifique
+
+- Identifique-se para o GIT com os comando:
+- git config user.name 'Seu nome'
+- git config user.email 'email@.....com
+
 ## Passo final: Envie suas alterações
 
 - git add . (adiciona todas alterações)
