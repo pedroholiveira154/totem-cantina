@@ -20,6 +20,20 @@ main {
   /* transform: rotate(90deg); */
 /* } */
 
+.caixaPrincipal {
+  background-color: white;
+  border-radius: 17%;
+  border: solid 1px #ffffff8e;
+  box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.caixaSubPrincipal{
+  background-color: white;
+  box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.3);
+  width: 100vw;
+}
+
+
 /* 
 =================================
 INDEX
@@ -302,7 +316,7 @@ CARDAPIO
   font-size: 1.1em;
 }
 
-footer{
+footer {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -311,7 +325,7 @@ footer{
   padding: 10rem;
 }
 
-footer button{
+footer button {
   background-color: #FF0D0D;
   color: white;
   width: 10rem;
@@ -319,11 +333,47 @@ footer button{
 }
 
 /* 
+=======================
+        PAGAMENTO
+=======================
+*/
+
+#caixaPrecoTotal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#caixaPrecoTotal p {
+  color: #FF0000;
+  font-size: 50px;
+}
+
+#opcoesPagamento{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.formaPagamento {
+  background-color: #FF0000;
+  color: white;
+  font-size: 20px;
+  width: 200px;
+  height: 250px;
+  border: none;
+  border-radius: 17%;
+}
+
+.formaPagamento:active {
+  background-color: #920000;
+}
+
+
+/* 
 ============================
 RESPONSIVIDADE
 ============================  
 */
 /* Quando a tela é de um tablet */
-@media (max-width: 768px) {
-  
-}
+@media (max-width: 768px) {}

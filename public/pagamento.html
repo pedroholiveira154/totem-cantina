@@ -25,8 +25,33 @@
     </header>
 
     <main>
-        <div class="caixaPrincipal">
-            <div id="preco-total"></div>
+        <div class="caixaSubPrincipal">
+            <p>RESUMO DO PEDIDO:</p>
+
+            <div class="caixaPrincipal">
+                <div id="caixaPrecoTotal">
+                    <p>Total a pagar:</p>
+                    <p id="preco-total"></p>
+                    <p>Insira a forma de pagamento:</p>
+                </div>
+                <div id="opcoesPagamento">
+                    <button class="formaPagamento" id="pagamentoDebito">
+                        <p>Débito</p>
+                    </button>
+                    <button class="formaPagamento" id="pagamentoCredito">
+                        <p>Crédito</p>
+                    </button>
+                    <button class="formaPagamento" id="pagamentoDinheiro">
+                        <p>Dinheiro</p>
+                    </button>
+                    <button class="formaPagamento" id="pagamentoPix">
+                        <p>Pix</p>
+                    </button>
+                    <button class="formaPagamento" id="pagamentoValeR">
+                        <p>Vale Refeição</p>
+                    </button>
+                </div>
+            </div>
         </div>
         <button onclick="retornar()">Voltar</button>
     </main>

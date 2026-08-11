@@ -176,10 +176,7 @@ if (pg_pedido) {
 
 if (pg_pagamento) {
 
-      document.getElementById("preco-total").innerHTML = `
-    <img id="carrinho" src="img/imgCompra/carrinho-de-compras.png">
-    <h1>R$ ${total}</h1>
-`;  
+    document.getElementById("preco-total").innerHTML = `R$${total}`;  
 
 }
 
