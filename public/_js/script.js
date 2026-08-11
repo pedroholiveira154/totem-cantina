@@ -35,7 +35,10 @@ function iniciarPedido() {
         localStorage.setItem('nomeCliente', nome)
         window.location.href = "cardapio.html"
     } else {
-        alert("Por favor, preencha o campo 'Seu Nome'")
+            Swal.fire({
+            text: "Por favor, preencha o campo 'Seu Nome'",
+            icon: "Error"
+        });
     }
 }
 

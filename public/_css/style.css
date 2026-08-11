@@ -20,6 +20,12 @@ main {
   /* transform: rotate(90deg); */
 /* } */
 
+/* 
+=================================
+INDEX
+================================= 
+*/
+
 .index-conteudo {
   position: relative;
   /* necessário para z-index funcionar */
@@ -87,8 +93,6 @@ main {
   z-index: 0;
   /* fica atrás */
 }
-
-
 
 /* ----------------INDEX_CAIXA DE PEDIDO-------------------- */
 .index-caixa-pedido {
@@ -212,8 +216,11 @@ main {
   margin-bottom: 60px;
 }
 
-
-/* ---------------------CARDAPIO------------------- */
+/* 
+====================================  
+CARDAPIO
+==================================== 
+*/
 .cardapio-caixaPrincipal {
   width: 100vw;
   background-color: white;
@@ -309,4 +316,14 @@ footer button{
   color: white;
   width: 10rem;
   height: 5rem;
+}
+
+/* 
+============================
+RESPONSIVIDADE
+============================  
+*/
+/* Quando a tela é de um tablet */
+@media (max-width: 768px) {
+  
 }
