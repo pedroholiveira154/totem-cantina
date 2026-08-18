@@ -22,17 +22,48 @@ main {
 
 .caixaPrincipal {
   background-color: white;
-  border-radius: 17%;
+  border-radius: 1.2rem;
   border: solid 1px #ffffff8e;
   box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.3);
+  margin: 5rem;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+
 }
 
-.caixaSubPrincipal{
+.caixaSubPrincipal {
   background-color: white;
   box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.3);
   width: 100vw;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
+.btn-voltar {
+  margin-left: auto;
+  font-size: 1.5em;
+  font-weight: bold;
+  background-color: white;
+  border: solid 1px #ffffff8e;
+  border-radius: 10px;
+  box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.btn-pagamentoEpagar {
+  font-size: 1.5rem;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  /* box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.3); */
+  margin: 0 auto;
+  padding: 1.5rem 3rem 1.5rem 3rem;
+}
 
 /* 
 =================================
@@ -350,17 +381,27 @@ footer button {
   font-size: 50px;
 }
 
-#opcoesPagamento{
+#opcoesPagamento {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(2, 100px);
+  gap: 1.02rem;
+  margin: 50px;
 }
+
+/* Aplica o formato W nas telas (3 em cima, 2 em baixo) */
+#pagamentoDebito { grid-column: 1; grid-row: 1; }
+#pagamentoCredito { grid-column: 2; grid-row: 2; }
+#pagamentoDinheiro { grid-column: 3; grid-row: 1; }
+#pagamentoPix { grid-column: 4; grid-row: 2; }
+#pagamentoValeR { grid-column: 5; grid-row: 1; }
 
 .formaPagamento {
   background-color: #FF0000;
   color: white;
   font-size: 20px;
-  width: 200px;
-  height: 250px;
+  width: 150px;
+  height: 150px;
   border: none;
   border-radius: 17%;
 }
@@ -369,11 +410,14 @@ footer button {
   background-color: #920000;
 }
 
-
-/* 
-============================
-RESPONSIVIDADE
-============================  
-*/
+/* ============================
+        RESPONSIVIDADE
+============================  */  
 /* Quando a tela é de um tablet */
 @media (max-width: 768px) {}
+
+/* Configuração para Celulares (Mobile-First) */
+/* #opcoesPagamento {
+  display: grid;
+  grid-template-columns: 1fr; /* Uma opção embaixo da outra */
+/* } */ 
