@@ -150,7 +150,7 @@ INDEX
 
 .index-caixa-pedido h1 {
   font-weight: bold;
-  font-size: 10.625em;
+  font-size: clamp(100px, 11.7vw, 170px);
   color: #A50000;
   text-shadow: rgb(187, 183, 183) -4px -3px 3px;
   transform: rotate(-5deg);
