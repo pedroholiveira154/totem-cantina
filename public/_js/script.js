@@ -29,17 +29,17 @@ const pg_pagar = document.getElementById('pagina-pagar')
 // =============================================
 
 function iniciarPedido() {
-    let nome = input_nome.value
+    // let nome = input_nome.value
 
-    if (input_nome.value.trim() !== "") {
-        localStorage.setItem('nomeCliente', nome)
-        window.location.href = "cardapio.html"
-    } else {
-            Swal.fire({
-            text: "Por favor, preencha o campo 'Seu Nome'",
-            icon: "Error"
-        });
-    }
+    // if (input_nome.value.trim() !== "") {
+    //     localStorage.setItem('nomeCliente', nome)
+    //     window.location.href = "cardapio.html"
+    // } else {
+    //         Swal.fire({
+    //         text: "Por favor, preencha o campo 'Seu Nome'",
+    //         icon: "Error"
+    //     });
+    // }
 }
 
 // =============================================
