@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="_css/style.css">
 </head>
 
-<body id="pagina-pagamento" onload="overflow()">
+<body id="pagina-pagamento">
     <header>
         <div class="triangulo-vermelho"></div>
         <div class="index-conteudo">
@@ -32,7 +32,7 @@
             <div class="caixaPrincipal">
                 <div id="caixaPrecoTotal">
                     <p>Total a pagar:</p>
-                    <p id="preco-total"></p>
+                    <div id="preco-total"></div>
                     <p>Insira a forma de pagamento:</p>
                 </div>
                 <div id="opcoesPagamento">
@@ -57,7 +57,7 @@
     </main>
     
     <footer>
-        <button onclick="redirecionarPagar()" class="btn-pagamentoEpagar">Pagar</button>
+        <button onclick="redirecionarFinalizar()" class="btn-pagamentoEpagar">Pagar</button>
     </footer>
 
     <script src="_js/script.js"></script>

@@ -9,7 +9,7 @@ function retornar() {
     if (pg_pagamento) {
         window.location.href = 'pedido.html'
     }
-    if(pg_pagar){
+    if(pg_finalizar){
         window.location.href = 'pagamento.html'
     }
 }
