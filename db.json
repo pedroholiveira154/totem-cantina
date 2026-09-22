@@ -7,247 +7,157 @@
             "preco": 8.00,
             "quantidade": 5,
             "categoriaId": 1,
-            "imagem": "img/imgCardapio/hamburguer.jpg ",
+            "imagem": "img/imgCardapio/coxinha.png ",
             "disponivel": true
         },
         {
             "id": 2,
+            "nome": "Hamburguer",
+            "descricao": "Pão com carne, queijo, tomate e alface",
+            "preco": 10.00,
+            "quantidade": 5,
+            "categoriaId": 1,
+            "imagem": "img/imgCardapio/hamburguer.png ",
+            "disponivel": true
+        },
+        {
+            "id": 3,
+            "nome": "Coca-Cola",
+            "descricao": "Bebida gelada com gás",
+            "preco": 6.00,
+            "quantidade": 5,
+            "categoriaId": 2,
+            "imagem": "img/imgCardapio/coca.png ",
+            "disponivel": true
+        },
+        {
+            "id": 4,
+            "nome": "Croissant de Chocolate",
+            "descricao": "Croissant recheado de chocolate",
+            "preco": 10.00,
+            "quantidade": 5,
+            "categoriaId": 2,
+            "imagem": "img/imgCardapio/croissant-chocolate.png",
+            "disponivel": true
+        },
+        {
+            "id": 1,
             "nome": "Coxinha",
             "descricao": "Massa de batata recheada com frango",
             "preco": 8.00,
             "quantidade": 5,
             "categoriaId": 1,
-            "imagem": "img/imgCardapio/hamburguer.jpg ",
+            "imagem": "img/imgCardapio/coxinha.png ",
             "disponivel": true
         },
         {
             "id": 2,
+            "nome": "Hamburguer",
+            "descricao": "Pão com carne, queijo, tomate e alface",
+            "preco": 10.00,
+            "quantidade": 5,
+            "categoriaId": 1,
+            "imagem": "img/imgCardapio/hamburguer.png ",
+            "disponivel": true
+        },
+        {
+            "id": 3,
+            "nome": "Coca-Cola",
+            "descricao": "Bebida gelada com gás",
+            "preco": 6.00,
+            "quantidade": 5,
+            "categoriaId": 2,
+            "imagem": "img/imgCardapio/coca.png ",
+            "disponivel": true
+        },
+        {
+            "id": 4,
+            "nome": "Croissant de Chocolate",
+            "descricao": "Croissant recheado de chocolate",
+            "preco": 10.00,
+            "quantidade": 5,
+            "categoriaId": 2,
+            "imagem": "img/imgCardapio/croissant-chocolate.png",
+            "disponivel": true
+        },
+        {
+            "id": 1,
             "nome": "Coxinha",
             "descricao": "Massa de batata recheada com frango",
             "preco": 8.00,
             "quantidade": 5,
             "categoriaId": 1,
-            "imagem": "img/imgCardapio/hamburguer.jpg ",
+            "imagem": "img/imgCardapio/coxinha.png ",
             "disponivel": true
         },
         {
             "id": 2,
+            "nome": "Hamburguer",
+            "descricao": "Pão com carne, queijo, tomate e alface",
+            "preco": 10.00,
+            "quantidade": 5,
+            "categoriaId": 1,
+            "imagem": "img/imgCardapio/hamburguer.png ",
+            "disponivel": true
+        },
+        {
+            "id": 3,
+            "nome": "Coca-Cola",
+            "descricao": "Bebida gelada com gás",
+            "preco": 6.00,
+            "quantidade": 5,
+            "categoriaId": 2,
+            "imagem": "img/imgCardapio/coca.png ",
+            "disponivel": true
+        },
+        {
+            "id": 4,
+            "nome": "Croissant de Chocolate",
+            "descricao": "Croissant recheado de chocolate",
+            "preco": 10.00,
+            "quantidade": 5,
+            "categoriaId": 2,
+            "imagem": "img/imgCardapio/croissant-chocolate.png",
+            "disponivel": true
+        },
+        {
+            "id": 1,
             "nome": "Coxinha",
             "descricao": "Massa de batata recheada com frango",
             "preco": 8.00,
             "quantidade": 5,
             "categoriaId": 1,
-            "imagem": "img/imgCardapio/hamburguer.jpg ",
+            "imagem": "img/imgCardapio/coxinha.png ",
             "disponivel": true
         },
         {
             "id": 2,
-            "nome": "Coxinha",
-            "descricao": "Massa de batata recheada com frango",
-            "preco": 8.00,
+            "nome": "Hamburguer",
+            "descricao": "Pão com carne, queijo, tomate e alface",
+            "preco": 10.00,
             "quantidade": 5,
             "categoriaId": 1,
-            "imagem": "img/imgCardapio/hamburguer.jpg ",
+            "imagem": "img/imgCardapio/hamburguer.png ",
             "disponivel": true
         },
         {
-            "id": 2,
-            "nome": "Coxinha",
-            "descricao": "Massa de batata recheada com frango",
-            "preco": 8.00,
+            "id": 3,
+            "nome": "Coca-Cola",
+            "descricao": "Bebida gelada com gás",
+            "preco": 6.00,
             "quantidade": 5,
-            "categoriaId": 1,
-            "imagem": "img/imgCardapio/hamburguer.jpg ",
+            "categoriaId": 2,
+            "imagem": "img/imgCardapio/coca.png ",
             "disponivel": true
         },
         {
-            "id": 2,
-            "nome": "Coxinha",
-            "descricao": "Massa de batata recheada com frango",
-            "preco": 8.00,
+            "id": 4,
+            "nome": "Croissant de Chocolate",
+            "descricao": "Croissant recheado de chocolate",
+            "preco": 10.00,
             "quantidade": 5,
-            "categoriaId": 1,
-            "imagem": "img/imgCardapio/hamburguer.jpg ",
-            "disponivel": true
-        },
-        {
-            "id": 2,
-            "nome": "Coxinha",
-            "descricao": "Massa de batata recheada com frango",
-            "preco": 8.00,
-            "quantidade": 5,
-            "categoriaId": 1,
-            "imagem": "img/imgCardapio/hamburguer.jpg ",
-            "disponivel": true
-        },
-        {
-            "id": 2,
-            "nome": "Coxinha",
-            "descricao": "Massa de batata recheada com frango",
-            "preco": 8.00,
-            "quantidade": 5,
-            "categoriaId": 1,
-            "imagem": "img/imgCardapio/hamburguer.jpg ",
-            "disponivel": true
-        },
-        {
-            "id": 2,
-            "nome": "Coxinha",
-            "descricao": "Massa de batata recheada com frango",
-            "preco": 8.00,
-            "quantidade": 5,
-            "categoriaId": 1,
-            "imagem": "img/imgCardapio/hamburguer.jpg ",
-            "disponivel": true
-        },
-        {
-            "id": 2,
-            "nome": "Coxinha",
-            "descricao": "Massa de batata recheada com frango",
-            "preco": 8.00,
-            "quantidade": 5,
-            "categoriaId": 1,
-            "imagem": "img/imgCardapio/hamburguer.jpg ",
-            "disponivel": true
-        },
-        {
-            "id": 2,
-            "nome": "Coxinha",
-            "descricao": "Massa de batata recheada com frango",
-            "preco": 8.00,
-            "quantidade": 5,
-            "categoriaId": 1,
-            "imagem": "img/imgCardapio/hamburguer.jpg ",
-            "disponivel": true
-        },
-        {
-            "id": 2,
-            "nome": "Coxinha",
-            "descricao": "Massa de batata recheada com frango",
-            "preco": 8.00,
-            "quantidade": 5,
-            "categoriaId": 1,
-            "imagem": "img/imgCardapio/hamburguer.jpg ",
-            "disponivel": true
-        },
-        {
-            "id": 2,
-            "nome": "Coxinha",
-            "descricao": "Massa de batata recheada com frango",
-            "preco": 8.00,
-            "quantidade": 5,
-            "categoriaId": 1,
-            "imagem": "img/imgCardapio/hamburguer.jpg ",
-            "disponivel": true
-        },
-        {
-            "id": 2,
-            "nome": "Coxinha",
-            "descricao": "Massa de batata recheada com frango",
-            "preco": 8.00,
-            "quantidade": 5,
-            "categoriaId": 1,
-            "imagem": "img/imgCardapio/hamburguer.jpg ",
-            "disponivel": true
-        },
-        {
-            "id": 2,
-            "nome": "Coxinha",
-            "descricao": "Massa de batata recheada com frango",
-            "preco": 8.00,
-            "quantidade": 5,
-            "categoriaId": 1,
-            "imagem": "img/imgCardapio/hamburguer.jpg ",
-            "disponivel": true
-        },
-        {
-            "id": 2,
-            "nome": "Coxinha",
-            "descricao": "Massa de batata recheada com frango",
-            "preco": 8.00,
-            "quantidade": 5,
-            "categoriaId": 1,
-            "imagem": "img/imgCardapio/hamburguer.jpg ",
-            "disponivel": true
-        },
-        {
-            "id": 2,
-            "nome": "Coxinha",
-            "descricao": "Massa de batata recheada com frango",
-            "preco": 8.00,
-            "quantidade": 5,
-            "categoriaId": 1,
-            "imagem": "img/imgCardapio/hamburguer.jpg ",
-            "disponivel": true
-        },
-        {
-            "id": 2,
-            "nome": "Coxinha",
-            "descricao": "Massa de batata recheada com frango",
-            "preco": 8.00,
-            "quantidade": 5,
-            "categoriaId": 1,
-            "imagem": "img/imgCardapio/hamburguer.jpg ",
-            "disponivel": true
-        },
-        {
-            "id": 2,
-            "nome": "Coxinha",
-            "descricao": "Massa de batata recheada com frango",
-            "preco": 8.00,
-            "quantidade": 5,
-            "categoriaId": 1,
-            "imagem": "img/imgCardapio/hamburguer.jpg ",
-            "disponivel": true
-        },
-        {
-            "id": 2,
-            "nome": "Coxinha",
-            "descricao": "Massa de batata recheada com frango",
-            "preco": 8.00,
-            "quantidade": 5,
-            "categoriaId": 1,
-            "imagem": "img/imgCardapio/hamburguer.jpg ",
-            "disponivel": true
-        },
-        {
-            "id": 2,
-            "nome": "Coxinha",
-            "descricao": "Massa de batata recheada com frango",
-            "preco": 8.00,
-            "quantidade": 5,
-            "categoriaId": 1,
-            "imagem": "img/imgCardapio/hamburguer.jpg ",
-            "disponivel": true
-        },
-        {
-            "id": 2,
-            "nome": "Coxinha",
-            "descricao": "Massa de batata recheada com frango",
-            "preco": 8.00,
-            "quantidade": 5,
-            "categoriaId": 1,
-            "imagem": "img/imgCardapio/hamburguer.jpg ",
-            "disponivel": true
-        },
-        {
-            "id": 2,
-            "nome": "Coxinha",
-            "descricao": "Massa de batata recheada com frango",
-            "preco": 8.00,
-            "quantidade": 5,
-            "categoriaId": 1,
-            "imagem": "img/imgCardapio/hamburguer.jpg ",
-            "disponivel": true
-        },
-        {
-            "id": 2,
-            "nome": "Coxinha",
-            "descricao": "Massa de batata recheada com frango",
-            "preco": 8.00,
-            "quantidade": 5,
-            "categoriaId": 1,
-            "imagem": "img/imgCardapio/hamburguer.jpg ",
+            "categoriaId": 2,
+            "imagem": "img/imgCardapio/croissant-chocolate.png",
             "disponivel": true
         }
     ],
@@ -281,7 +191,7 @@
             "status": "Pago",
             "total": 22.00
         },
-                {
+        {
             "id": 2,
             "numeroPedido": "A002",
             "data": "2026-06-08T15:30:00",

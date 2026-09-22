@@ -30,7 +30,7 @@ const pg_finalizar = document.getElementById('pagina-finalizar')
 if (pg_index) {
     function iniciarPedido() {
 
-        let nome = input_nome.value;
+        let nome = input_nome.value.toUpperCase();
 
         if (nome.trim() !== "") {
 
@@ -78,12 +78,6 @@ function formatarPreco(preco) {
 
 function mostrarTotal(total) {
     document.getElementById("preco-total").innerHTML = `
-        <img 
-            id="carrinho" 
-            src="img/imgCompra/carrinho-de-compras.png"
-            width="100px"
-            height="100px"
-        >
         <h1>R$ ${formatarPreco(total)}</h1>
     `;
 }

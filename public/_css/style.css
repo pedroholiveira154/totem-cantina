@@ -72,6 +72,10 @@ html {
   padding: 1.5rem 3rem 1.5rem 3rem;
 }
 
+#lista-produtos{
+    overflow-y: auto;
+}
+
 /* 
 =================================
 INDEX
@@ -317,11 +321,11 @@ CARDAPIO
 #cardapio {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
   flex: 1;
   overflow-y: auto;
   height: calc(100vh - 110px);
   padding: 20px;
-
   scroll-behavior: smooth;
 }
 
@@ -330,18 +334,18 @@ CARDAPIO
 }
 
 #cardapio::-webkit-scrollbar-track {
-  background: #ff000080; 
+  background: #ff000080;
   border-radius: 15px;
 }
 
 #cardapio::-webkit-scrollbar-thumb {
   background-color: #bd0202;
   border-radius: 15px;
-  border: 1px solid #ffffff; 
+  border: 1px solid #ffffff;
 }
 
 #cardapio::-webkit-scrollbar-thumb:hover {
-  background-color: #640202; 
+  background-color: #640202;
 }
 
 #cardapio img {
@@ -412,43 +416,69 @@ li.ativo {
 
 #produtoCard {
   color: #7c0000;
-  padding: 2rem;
+  background-color: #ffffff;
+
+  padding: 0;
+
+  border: 2px solid #c8c8c8;
+  border-radius: 1rem;
+
+  box-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.28),
+    0 5px 0 #9e0000;
+
+  overflow: hidden;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-.produto-cima,
-.produto-baixo {
-  border: solid 2px #BEBEBE !important ;
+#produtoCard:hover{
+      cursor: pointer;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 4px 8px rgba(0, 0, 0, 0.28),
+        0 6px 0 #9e0000;
 }
 
 .produto-cima {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
-  border-bottom: none;
-  border-radius: 1rem 1.3rem 0 0;
-  padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+
+    background-color: #ffffff;
+
+    border-bottom: 2px solid #cfcfcf;
+
+    padding: 1.5rem;
 }
 
-.produto-cima img{
-  max-height: 227px;
+.produto-cima img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
   max-width: 206px;
+  aspect-ratio: 1 / 1;
+  display: block;
 }
 
 .produto-baixo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
-  border-radius: 0 0 1rem 1.3rem;
-  box-shadow: 0px 1px 5px 0px #ff000094;
-  padding: 1rem;
-}
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
 
-.produto-baixo:hover {
-  cursor: pointer;
+    background-color: #ffffff;
+
+    border: none;
+
+    padding: 0.7rem 1rem;
 }
 
 .produto-baixo p {
