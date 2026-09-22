@@ -78,7 +78,10 @@ function formatarPreco(preco) {
 
 function mostrarTotal(total) {
     document.getElementById("preco-total").innerHTML = `
+    <div class="caixa-precoTotal">
+        <p>Total a pagar:</p>
         <h1>R$ ${formatarPreco(total)}</h1>
+    </div>
     `;
 }
 

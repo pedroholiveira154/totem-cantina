@@ -382,7 +382,7 @@ CARDAPIO
   display: flex;
   flex-direction: column;
 
-  justify-content: space-between;
+  gap: clamp(20px, 10vw, 40px);
 }
 
 .cardapio-sidebar li {
@@ -536,14 +536,14 @@ footer button:active {
 =======================
 */
 
-#caixaPrecoTotal {
+.caixa-precoTotal {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
 
-#caixaPrecoTotal p {
+.caixa-precoTotal p {
   color: #FF0000;
   font-size: 50px;
 }
