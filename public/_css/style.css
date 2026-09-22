@@ -112,7 +112,7 @@ INDEX
 
 .header-principal #cantina {
   color: white;
-  font-size: clamp(4rem, 12vw, 9rem);
+  font-size: clamp(3rem, 10vw, 8rem);
   font-style: italic;
   text-shadow: #A50000 13px 7px 2px;
 }
