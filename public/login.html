@@ -1,11 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Login - FilaZero</title>
+    <link rel="stylesheet" href="_css/admin.css">
 </head>
-<body>
-    
+<body background="img/imgAdmin/FundoAdmin.png">
+
+    <div class="corpo">
+        <h1 id="ttlogin">LOGIN</h1>
+
+        <input id="usuario" type="text" placeholder="👤 Usuário">
+
+        <input id="senha" type="password" placeholder="••• Senha">
+
+        <br>
+
+        <button id="botaologin" onclick="acessar()">LOGIN</button>
+
+        <p id="direitos">@Todos direitos reservados.</p>
+    </div>
+
+    <script>
+        function acessar() {
+            var usuario = document.getElementById('usuario').value;
+            var senha = document.getElementById('senha').value;
+
+            if(usuario === "Admin" && senha === "123") {
+                window.location.href = "estoque.html"
+            }else {
+                alert("Usuário ou Senha Incorretos")
+            }
+        }
+    </script>
+
 </body>
 </html>
