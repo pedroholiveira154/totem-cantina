@@ -52,9 +52,9 @@ if (pg_index) {
     input_nome.addEventListener("keydown", (event) => {
 
         if (event.key === "Enter") {
+            event.preventDefault()
             iniciarPedido();
         }
-
     });
 }
 
@@ -111,91 +111,111 @@ function mostrarTotal(total) {
 // FUNCOES - CARDAPIO
 // =============================================
 
+async function categoria(){
+    const li = document.querySelector('li.ativo');
+    const categoria = li.dataset.categoria;
+
+    try{
+        console.log(categoria)
+    }
+    catch(error){
+        console.log(error)
+        alert("Não foi possível alternar a categoria")
+    }
+}
+
+
 if (pg_cardapio) {
 
     let nomeCliente = document.getElementById('nome-cliente');
-
-    // querySelectorAll permite usar o forEach
     let itens = document.querySelectorAll('.cardapio-sidebar li');
+    const cardapio = document.getElementById("cardapio");
 
+    nomeCliente.textContent = localStorage.getItem('nomeCliente');
+
+    // Guarda os produtos vindos do banco
+    let produtos = [];
+
+    // Busca os produtos uma vez
+    async function carregarProdutos() {
+        const resposta = await fetch("http://localhost:3001/api/produtos");
+        produtos = await resposta.json();
+
+        mostrarProdutos(produtos);
+    }
+
+    // Mostra os produtos na tela
+    function mostrarProdutos(produtosFiltrados) {
+
+        // Limpa os produtos que já estão na tela
+        cardapio.innerHTML = "";
+
+        produtosFiltrados.forEach(produto => {
+
+            const item = document.createElement("div");
+            item.className = "produtoCard";
+
+            item.innerHTML = `
+                <div class="produto-cima">
+                    <img src="${produto.imagem}">
+                    <p class="nome-produto">${produto.nome}</p>
+                </div>
+
+                <div class="produto-baixo">
+                    <p>
+                        a partir de <br>
+                        <span class="produto-preco">
+                            R$ ${produto.preco}
+                        </span>
+                    </p>
+                </div>
+            `;
+
+            item.addEventListener("click", () => {
+
+                Swal.fire({
+                    icon: "success",
+                    title: "Produto adicionado",
+                });
+
+                adicionarAoCarrinho(produto);
+            });
+
+            cardapio.appendChild(item);
+        });
+    }
+
+    // Categorias
     itens.forEach(li => {
 
         li.addEventListener('click', () => {
 
-            // Remove a classe de todos os li da sidebar
             itens.forEach(i => i.classList.remove('ativo'));
-
-            // Adiciona a classe ativo apenas no li que foi clicado
             li.classList.add('ativo');
+
+            // Pega a categoria selecionada
+            const categoria = li.dataset.categoria;
+
+            // Filtra os produtos
+            const produtosFiltrados = produtos.filter(
+                produto => produto.categoria_id == categoria
+            );
+
+            mostrarProdutos(produtosFiltrados);
         });
 
     });
 
-    nomeCliente.textContent = localStorage.getItem('nomeCliente');
-
-    // ANTES (json-server): fetch("http://localhost:3000/produtos")
-    // AGORA (API Node/Express + MySQL, porta definida no .env):
-    fetch("http://localhost:3001/api/produtos")
-        .then(res => res.json())
-        .then(produtos => {
-
-            const cardapio = document.getElementById("cardapio");
-
-            produtos.forEach(produto => {
-
-                const item = document.createElement("div");
-
-                item.innerHTML = `
-                    <div id="produtoCard">
-
-                        <div class="produto-cima">
-                            <img src="${produto.imagem}">
-                            <p id="nome-produto">${produto.nome}</p>
-                        </div>
-
-                        <div class="produto-baixo">
-                            <p>
-                                a partir de <br>
-                                <span id="produto-preco">
-                                    R$ ${produto.preco}
-                                </span>
-                            </p>
-                        </div>
-
-                    </div>
-                `;
-
-                // QUANDO CLICAR NO PRODUTO
-                item.addEventListener("click", () => {
-
-                    Swal.fire({
-                        icon: "success",
-                        title: "Produto adicionado",
-                    });
-
-                    adicionarAoCarrinho(produto);
-                });
-
-                console.log(item);
-                console.log(produtos);
-                console.log(produto);
-
-                cardapio.appendChild(item);
-            });
-
-        });
+    carregarProdutos();
 
 
     // FUNÇÃO DO CARRINHO
     function adicionarAoCarrinho(produto) {
 
-        // pega carrinho atual ou cria vazio
         let carrinho = obterCarrinho();
 
-        // adiciona produto
         carrinho.push(produto);
 
-        // salva novamente
         localStorage.setItem("carrinho", JSON.stringify(carrinho));
     }
 
@@ -203,9 +223,7 @@ if (pg_cardapio) {
     function direcionarPedido() {
         window.location.href = 'pedido.html';
     }
-
 }
-
 
 // =============================================
 // FUNCOES - PEDIDO

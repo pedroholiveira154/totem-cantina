@@ -321,6 +321,7 @@ CARDAPIO
 #cardapio {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: max-content;
   gap: 1rem;
   flex: 1;
   overflow-y: auto;
@@ -414,11 +415,12 @@ li.ativo {
 } */
 
 
-#produtoCard {
+.produtoCard {
   color: #7c0000;
   background-color: #ffffff;
 
   padding: 0;
+  height: clamp(18.75rem, 10vw, 10rem);
 
   border: 2px solid #c8c8c8;
   border-radius: 1rem;
@@ -434,7 +436,7 @@ li.ativo {
     box-shadow 0.2s ease;
 }
 
-#produtoCard:hover{
+.produtoCard:hover{
       cursor: pointer;
 
     transform: translateY(-2px);
@@ -485,12 +487,12 @@ li.ativo {
   font-size: 1em;
 }
 
-#nome-produto {
+.nome-produto {
   font-size: 1em;
   font-weight: bold;
 }
 
-#produto-preco {
+.produto-preco {
   font-size: 1.1em;
   font-weight: bold;
 }

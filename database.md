@@ -2,7 +2,11 @@
 
   ## Passo 0: Criando a tabela (No CMD)
   
-  - "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe" -u root -p < schema.sql
+  - Acesse a pasta "database" do totem-cantina
+
+  - Use o código abaixo:
+  - "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe" "-u root -p < schema.sql"
+  ### OBS: O caminho do programa do MYSQL muda de PC para PC
 
   ## Passo 1: Configurar o .env
 

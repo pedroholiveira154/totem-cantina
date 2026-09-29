@@ -4,7 +4,7 @@
 - senha : 117117
 
 ### Iniciar o servidor:
-- npx json-server --watch db.json --port 3000
+- Leia o database.md!
 
 ## Passo 1: Copie a URL do repositório
 
