@@ -30,8 +30,11 @@
                 <button onclick="retornar()" class="btn-voltar">Voltar</button>
             </div>
             <div class="caixaPrincipal">
-                <div id="preco-total"></div>
-                <p>Insira a forma de pagamento:</p>
+                <div id="caixaPrecoTotal">
+                    <p>Total a pagar:</p>
+                    <div id="preco-total"></div>
+                    <p>Insira a forma de pagamento:</p>
+                </div>
                 <div id="opcoesPagamento">
                     <button class="formaPagamento" id="pagamentoDebito">
                         <p>Débito</p>
@@ -58,7 +61,6 @@
     </footer>
 
     <script src="_js/script.js"></script>
-    <script src="_js/global.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 

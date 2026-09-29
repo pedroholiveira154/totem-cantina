@@ -30,7 +30,7 @@ const pg_finalizar = document.getElementById('pagina-finalizar')
 if (pg_index) {
     function iniciarPedido() {
 
-        let nome = input_nome.value.toUpperCase();
+        let nome = input_nome.value;
 
         if (nome.trim() !== "") {
 
@@ -78,10 +78,13 @@ function formatarPreco(preco) {
 
 function mostrarTotal(total) {
     document.getElementById("preco-total").innerHTML = `
-    <div class="caixa-precoTotal">
-        <p>Total a pagar:</p>
+        <img 
+            id="carrinho" 
+            src="img/imgCompra/carrinho-de-compras.png"
+            width="100px"
+            height="100px"
+        >
         <h1>R$ ${formatarPreco(total)}</h1>
-    </div>
     `;
 }
 
@@ -112,7 +115,9 @@ if (pg_cardapio) {
 
     nomeCliente.textContent = localStorage.getItem('nomeCliente');
 
-    fetch("http://localhost:3000/produtos")
+    // ANTES (json-server): fetch("http://localhost:3000/produtos")
+    // AGORA (API Node/Express + MySQL, porta definida no .env):
+    fetch("http://localhost:3001/api/produtos")
         .then(res => res.json())
         .then(produtos => {
 
@@ -275,13 +280,41 @@ if (pg_pagamento) {
     mostrarTotal(total);
 
 
-    function pagar() {
+    // ADAPTADO: antes esse botão só limpava o carrinho e redirecionava,
+    // sem gravar nada. Agora ele registra o pedido de verdade via API.
+    async function pagar() {
 
-        alert("Compra realizada!");
+        const numeroPedido = "A" + String(Date.now()).slice(-6); // gera um número simples de pedido
 
-        localStorage.removeItem("carrinho");
+        const pedido = {
+            numeroPedido: numeroPedido,
+            formaPagamento: "PIX", // fixo aqui só para o teste; no projeto real viria de uma escolha do usuário
+            status: "Pago",
+            total: total,
+            itens: carrinho.map(produto => ({
+                produtoId: produto.id,
+                quantidade: 1, // o carrinho atual empilha 1 item por clique, sem agrupar quantidades
+                precoUnitario: produto.preco
+            }))
+        };
 
-        window.location.href = "index.html";
+        try {
+            const resposta = await fetch("http://localhost:3001/api/pedidos", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(pedido)
+            });
+
+            if (!resposta.ok) throw new Error("Falha ao registrar pedido");
+
+            alert("Compra realizada!");
+            localStorage.removeItem("carrinho");
+            window.location.href = "index.html";
+
+        } catch (erro) {
+            console.error(erro);
+            alert("Não foi possível registrar o pedido. Veja o console.");
+        }
     }
 
 

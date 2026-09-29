@@ -8,7 +8,7 @@ async function run() {
     let driver = await new Builder().forBrowser('chrome').build();
 
     // await driver.manage().window().maximize();
-    await driver.get('http://localhost:3000/'); //Abre a página
+    await driver.get('http://localhost:3001/'); //Abre a página
     await driver.sleep(2000);
     
     //Clica no botao de iniciar pedido

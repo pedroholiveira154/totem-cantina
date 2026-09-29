@@ -1,0 +1,15 @@
+{
+  "name": "totem-cantina-mysql",
+  "version": "1.0.0",
+  "description": "API de teste local (Node/Express + MySQL) para o projeto totem-cantina",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "mysql2": "^3.11.0",
+    "dotenv": "^16.4.5",
+    "cors": "^2.8.5"
+  }
+}
