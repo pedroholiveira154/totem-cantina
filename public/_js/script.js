@@ -30,7 +30,7 @@ const pg_finalizar = document.getElementById('pagina-finalizar')
 if (pg_index) {
     function iniciarPedido() {
 
-        let nome = input_nome.value;
+        let nome = input_nome.value.toUpperCase();
 
         if (nome.trim() !== "") {
 
@@ -59,6 +59,24 @@ if (pg_index) {
 }
 
 // =============================================
+// FUNÇÕES GERAIS - RETORNAR
+// =============================================
+function retornar() {
+    if (pg_cardapio) {
+        window.location.href = 'index.html'
+    }
+    if (pg_pedido) {
+        window.location.href = 'cardapio.html'
+    }
+    if (pg_pagamento) {
+        window.location.href = 'pedido.html'
+    }
+    if(pg_finalizar){
+        window.location.href = 'pagamento.html'
+    }
+}
+
+// =============================================
 // FUNÇÕES GERAIS - CARRINHO
 // =============================================
 
@@ -78,13 +96,13 @@ function formatarPreco(preco) {
 
 function mostrarTotal(total) {
     document.getElementById("preco-total").innerHTML = `
-        <img 
-            id="carrinho" 
-            src="img/imgCompra/carrinho-de-compras.png"
-            width="100px"
-            height="100px"
-        >
-        <h1>R$ ${formatarPreco(total)}</h1>
+            <img 
+                id="carrinho" 
+                src="img/imgCompra/carrinho-de-compras.png"
+                width="100px"
+                height="100px"
+            >
+            <h1>R$ ${formatarPreco(total)}</h1>
     `;
 }
 
@@ -245,15 +263,15 @@ if (pg_pedido) {
     }
 
 
-    // botão pagar
-    function pagar() {
+    // // botão pagar
+    // function pagar() {
 
-        alert("Compra realizada!");
+    //     alert("Compra realizada!");
 
-        localStorage.removeItem("carrinho");
+    //     localStorage.removeItem("carrinho");
 
-        window.location.href = "index.html";
-    }
+    //     window.location.href = "index.html";
+    // }
 
 
     function redirecionarPagamento() {
@@ -275,54 +293,52 @@ if (pg_pagamento) {
     // calcula o total
     const total = calcularTotal(carrinho);
 
-
     // MOSTRAR TOTAL
     mostrarTotal(total);
-
-
-    // ADAPTADO: antes esse botão só limpava o carrinho e redirecionava,
-    // sem gravar nada. Agora ele registra o pedido de verdade via API.
-    async function pagar() {
-
-        const numeroPedido = "A" + String(Date.now()).slice(-6); // gera um número simples de pedido
-
-        const pedido = {
-            numeroPedido: numeroPedido,
-            formaPagamento: "PIX", // fixo aqui só para o teste; no projeto real viria de uma escolha do usuário
-            status: "Pago",
-            total: total,
-            itens: carrinho.map(produto => ({
-                produtoId: produto.id,
-                quantidade: 1, // o carrinho atual empilha 1 item por clique, sem agrupar quantidades
-                precoUnitario: produto.preco
-            }))
-        };
-
-        try {
-            const resposta = await fetch("http://localhost:3001/api/pedidos", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(pedido)
-            });
-
-            if (!resposta.ok) throw new Error("Falha ao registrar pedido");
-
-            alert("Compra realizada!");
-            localStorage.removeItem("carrinho");
-            window.location.href = "index.html";
-
-        } catch (erro) {
-            console.error(erro);
-            alert("Não foi possível registrar o pedido. Veja o console.");
-        }
-    }
-
-
-    function redirecionarFinalizar() {
-        window.location.href = 'finalizar.html';
-    }
-
+    
 }
+
+// ADAPTADO: antes esse botão só limpava o carrinho e redirecionava,
+    // sem gravar nada. Agora ele registra o pedido de verdade via API.
+async function pagar() {
+
+    const carrinho = obterCarrinho();
+
+    const numeroPedido = "A" + String(Date.now()).slice(-6);
+
+    const total = calcularTotal(carrinho);
+
+    const pedido = {
+        numeroPedido: numeroPedido,
+        formaPagamento: "PIX",
+        status: "Pago",
+        total: total,
+        itens: carrinho.map(produto => ({
+            produtoId: produto.id,
+            quantidade: 1,
+            precoUnitario: produto.preco
+        }))
+    };
+
+    try {
+        const resposta = await fetch("http://localhost:3001/api/pedidos", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(pedido)
+        });
+
+        if (!resposta.ok) throw new Error("Falha ao registrar pedido");
+
+        alert("Compra realizada!");
+        localStorage.removeItem("carrinho");
+        window.location.href = "finalizar.html";
+
+    } catch (erro) {
+        console.error(erro);
+        alert("Não foi possível registrar o pedido. Veja o console.");
+    }
+}
+
 
 // =============================================
 // FUNCOES - PAGAR
@@ -330,6 +346,25 @@ if (pg_pagamento) {
 
 if (pg_finalizar) {
 
+}
 
+async function terminaPedido() {
+    try {
+        const mensagem = document.getElementById("mensagem");
 
+        for (let segundos = 5; segundos > 0; segundos--) {
+            mensagem.textContent =
+                `Pedido realizado! Você será redirecionado em ${segundos} segundos...`;
+
+            await new Promise(resolve => setTimeout(resolve, 1000));
+        }
+
+        mensagem.textContent = "Redirecionando...";
+
+        window.location.href = "index.html";
+    }
+    catch (erro) {
+        console.error(erro);
+        alert("Não foi possível finalizar o pedido. Veja o console.");
+    }
 }

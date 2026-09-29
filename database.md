@@ -1,22 +1,34 @@
 # Utilizando BANCO DE DADOS
 
-  ## Passo 0: Criando a tabela
+  ## Passo 0: Criando a tabela (No CMD)
 
   - Primeiro acesse o arquivo de criação das tabelas (necessário somente uma vez por PC):
-  - cd "C:\Users\Aluno\Desktop\totem-cantina\database"
+  - cd C:\Users\Aluno\Desktop\totem-cantina\database
   - E insira o código:
   - mysql -u root -p < schema.sql
 
   ## Passo 1: Instalando o necessário
 
-  - Volte a pasta raiz do projeto: cd ..
-  - Agora provavelmente você estará em um caminho como C:\Users\Aluno\Desktop\totem-cantina> 
-  ### Isso está correto!
+  - Volte a pasta raiz do projeto: cd C:\Users\Aluno\Desktop\totem-cantina> 
   - Escreva npm install para instalar todas dependencias do projeto
   - Inicie o servidor:
   - npm start
 
-  ## Abra o site e aproveite
+  ## Abra o site e aproveite!
+__________________________________________________________________________
+
+# Analisando o Banco de Dados
+
+ - No CMD digite:
+ - "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe" -u root -p 
+ ### Insira a senha do root (do Senai é "admin")
+
+ USE nome_do_banco;
+ SHOW TABLES;
+
+ SELECT * FROM tabelaDesejada;
+
+ DESCRIBE tabelaDesejada;
 
 
 
