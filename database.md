@@ -1,11 +1,8 @@
 # Utilizando BANCO DE DADOS
 
   ## Passo 0: Criando a tabela (No CMD)
-
-  - Primeiro acesse o arquivo de criação das tabelas (necessário somente uma vez por PC):
-  - cd C:\Users\Aluno\Desktop\totem-cantina\database
-  - E insira o código:
-  - mysql -u root -p < schema.sql
+  
+  - "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe" -u root -p < schema.sql
 
   ## Passo 1: Instalando o necessário
 
