@@ -91,10 +91,12 @@ INSERT INTO categorias (id, nome) VALUES
     (3, 'Sobremesas');
 
 INSERT INTO produtos (nome, descricao, preco, quantidade, categoria_id, imagem, disponivel) VALUES
-    ('Coxinha', 'Massa de batata recheada com frango', 8.00, 5, 1, 'img/imgCardapio/hamburguer.jpg', TRUE),
-    -- ↓ exemplos fictícios, apenas para popular Bebidas/Sobremesas no teste
-    ('Suco de Laranja', 'Suco natural 300ml', 6.00, 10, 2, 'img/imgCardapio/suco.jpg', TRUE),
-    ('Brigadeiro', 'Doce de chocolate tradicional', 3.50, 15, 3, 'img/imgCardapio/brigadeiro.jpg', TRUE);
+('Coxinha', 'Massa de batata recheada com frango', 8.00, 5, 1, 'img/imgCardapio/coxinha.png', 1),
+('Suco de Laranja', 'Suco natural 300ml', 6.00, 10, 2, 'img/imgCardapio/suco.png', 1),
+('Brigadeiro', 'Doce de chocolate tradicional', 3.50, 15, 3, 'img/imgCardapio/brigadeiro.png', 1),
+('Pão de Queijo', 'Pão de queijo tradicional', 5.00, 20, 1, 'img/imgCardapio/pao-de-queijo.png', 1),
+('Coca-Cola', 'Refrigerante lata 350ml', 6.00, 15, 2, 'img/imgCardapio/coca.png', 1),
+('Croissant de Chocolate', 'Croissant recheado com chocolate', 7.00, 10, 3, 'img/imgCardapio/croissant-chocolate.png', 1);
 
 -- pedidos: os 2 pedidos existentes no db.json
 INSERT INTO pedidos (id, numero_pedido, data_pedido, forma_pagamento, status, total) VALUES

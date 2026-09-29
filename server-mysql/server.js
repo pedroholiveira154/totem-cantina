@@ -8,10 +8,11 @@ const cors = require('cors');
 const pool = require('./db');
 
 const app = express();
+const path = require('path');
 
 app.use(cors());          // libera o front-end (rodando em outra porta/arquivo) chamar essa API
 app.use(express.json());  // permite ler JSON no corpo (body) de POST/PUT
-app.use(express.static('../public')); 
+app.use(express.static(path.join(__dirname, '../public')));
 
 const PORT = process.env.PORT || 3001;
 
