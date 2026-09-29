@@ -4,7 +4,11 @@
   
   - "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe" -u root -p < schema.sql
 
-  ## Passo 1: Instalando o necessário
+  ## Passo 1: Configurar o .env
+
+  - Copie o arquivo .env.example (deixe somente .env) e modifique a senha para a do root
+
+  ## Passo 2: Instalando o necessário
 
   - Volte a pasta raiz do projeto: cd C:\Users\Aluno\Desktop\totem-cantina> 
   - Escreva npm install para instalar todas dependencias do projeto
