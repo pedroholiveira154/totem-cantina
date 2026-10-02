@@ -3,13 +3,14 @@
 -- Equivalente ao db.json do repositório pedroholiveira154/totem-cantina
 -- Uso: aprendizado/local, NÃO é para substituir o db.json original.
 -- =====================================================================
+DROP DATABASE totem_cantina;
 
 CREATE DATABASE IF NOT EXISTS totem_cantina
   CHARACTER SET utf8mb4
   COLLATE utf8mb4_unicode_ci;
 
 USE totem_cantina;
-
+    
 -- ---------------------------------------------------------------------
 -- categorias  (equivalente a db.json -> "categorias")
 -- ---------------------------------------------------------------------
