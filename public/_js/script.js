@@ -129,6 +129,7 @@ if (pg_cardapio) {
 
     let nomeCliente = document.getElementById('nome-cliente');
     let itens = document.querySelectorAll('.cardapio-sidebar li');
+    let item = document.querySelector('.cardapio-sidebar li.ativo');
     const cardapio = document.getElementById("cardapio");
 
     nomeCliente.textContent = localStorage.getItem('nomeCliente');
@@ -190,15 +191,20 @@ if (pg_cardapio) {
 
         li.addEventListener('click', () => {
 
-            itens.forEach(i => i.classList.remove('ativo'));
-            li.classList.add('ativo');
+            if (li.classList.contains('ativo')) {
+                li.classList.remove('ativo');
+                carregarProdutos()
+            } else {
+                itens.forEach(i => i.classList.remove('ativo'));
+                li.classList.add('ativo');
+            }
 
             // Pega a categoria selecionada
             const categoria = li.dataset.categoria;
 
             // Filtra os produtos
             const produtosFiltrados = produtos.filter(
-                produto => produto.categoria_id == categoria
+                produto => produto.categorias.includes(Number(categoria))
             );
 
             mostrarProdutos(produtosFiltrados);

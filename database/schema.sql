@@ -10,7 +10,7 @@ CREATE DATABASE IF NOT EXISTS totem_cantina
   COLLATE utf8mb4_unicode_ci;
 
 USE totem_cantina;
-    
+
 -- ---------------------------------------------------------------------
 -- categorias  (equivalente a db.json -> "categorias")
 -- ---------------------------------------------------------------------
@@ -28,13 +28,30 @@ CREATE TABLE produtos (
     nome          VARCHAR(100) NOT NULL,
     descricao     VARCHAR(255),
     preco         DECIMAL(10,2) NOT NULL,
-    quantidade    INT NOT NULL DEFAULT 0,       -- estoque
-    categoria_id  INT,
+    quantidade    INT NOT NULL DEFAULT 0,
     imagem        VARCHAR(255),
-    disponivel    BOOLEAN NOT NULL DEFAULT TRUE,
-    CONSTRAINT fk_produtos_categoria
+    disponivel    BOOLEAN NOT NULL DEFAULT TRUE
+) ENGINE=InnoDB;
+
+
+-- ---------------------------------------------------------------------
+-- produto_categorias
+-- Um produto pode pertencer a várias categorias
+-- e uma categoria pode possuir vários produtos.
+-- ---------------------------------------------------------------------
+CREATE TABLE produto_categorias (
+    produto_id   INT NOT NULL,
+    categoria_id INT NOT NULL,
+
+    PRIMARY KEY (produto_id, categoria_id),
+
+    CONSTRAINT fk_produto_categoria_produto
+        FOREIGN KEY (produto_id) REFERENCES produtos(id)
+        ON UPDATE CASCADE ON DELETE CASCADE,
+
+    CONSTRAINT fk_produto_categoria_categoria
         FOREIGN KEY (categoria_id) REFERENCES categorias(id)
-        ON UPDATE CASCADE ON DELETE SET NULL
+        ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
@@ -85,60 +102,80 @@ CREATE TABLE admins (
 -- DADOS DE TESTE
 -- =====================================================================
 
--- categorias: as 3 que existem no db.json
+-- categorias: as 3 que existem no db.json 
 INSERT INTO categorias (id, nome) VALUES
     (1, 'Salgados'),
     (2, 'Bebidas'),
-    (3, 'Sobremesas');
+    (3, 'Sobremesas'),
+    (4, 'Lançamentos'),
+    (5, 'Mais Vendidos');
 
-INSERT INTO produtos
-    (nome, descricao, preco, quantidade, categoria_id, imagem, disponivel)
-VALUES
+INSERT INTO produtos (nome, descricao, preco, quantidade, imagem, disponivel) VALUES
     ('Coxinha',
      'Massa de batata recheada com frango',
-     8.00, 5, 1,
+     8.00, 5,
      'img/imgCardapio/coxinha.png', 1),
 
     ('Suco de Laranja',
      'Suco natural 300ml',
-     6.00, 10, 2,
+     6.00, 10,
      'img/imgCardapio/suco-laranja.png', 1),
 
     ('Brigadeiro',
      'Doce de chocolate tradicional',
-     3.50, 15, 3,
+     3.50, 15,
      'img/imgCardapio/brigadeiro.png', 1),
 
     ('Pão de Queijo',
      'Pão de queijo tradicional',
-     5.00, 20, 1,
+     5.00, 20,
      'img/imgCardapio/pao-de-queijo.png', 1),
 
     ('Coca-Cola',
      'Refrigerante lata 350ml',
-     6.00, 15, 2,
+     6.00, 15,
      'img/imgCardapio/coca.png', 1),
 
     ('Croissant de Chocolate',
      'Croissant recheado com chocolate',
-     7.00, 10, 3,
+     7.00, 10,
      'img/imgCardapio/croissant-chocolate.png', 1);
 
+INSERT INTO produto_categorias (produto_id, categoria_id) VALUES
+    -- Coxinha
+    (1, 1), -- Salgados
+
+    -- Suco de Laranja
+    (2, 2), -- Bebidas
+
+    -- Brigadeiro
+    (3, 3), -- Sobremesas
+
+    -- Pão de Queijo
+    (4, 1), -- Salgados
+    (4, 4), -- Lançamentos
+
+    -- Coca-Cola
+    (5, 2), -- Bebidas
+    (5, 4), -- Lançamentos
+    (5, 5), -- Mais Vendidos
+
+    -- Croissant
+    (6, 3), -- Sobremesas
+    (6, 4); -- Lançamentos
+
+
 -- pedidos: os 2 pedidos existentes no db.json
-INSERT INTO pedidos
-    (id, numero_pedido, data_pedido, forma_pagamento, status, total)
-VALUES
+INSERT INTO pedidos (id, numero_pedido, data_pedido, forma_pagamento, status, total) VALUES
     (1, 'A001', '2026-06-08 15:30:00', 'PIX', 'Pago', 22.00),
     (2, 'A002', '2026-06-08 15:30:00', 'PIX', 'Cancelado', 22.00);
 
--- itens de cada pedido
-INSERT INTO pedido_itens
-    (pedido_id, produto_id, quantidade, preco_unitario)
-VALUES
+-- itens de cada pedido (equivalente ao array "itens" do JSON)
+INSERT INTO pedido_itens (pedido_id, produto_id, quantidade, preco_unitario) VALUES
     (1, 1, 2, 8.00),
     (1, 2, 1, 6.00);
 
--- admins
+-- admins: os 2 usuários do db.json (senha em texto puro, só para teste)
 INSERT INTO admins (usuario, senha) VALUES
     ('root', 'senai'),
     ('admin', '123456');

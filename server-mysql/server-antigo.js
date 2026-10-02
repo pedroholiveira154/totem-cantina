@@ -21,52 +21,12 @@ const PORT = process.env.PORT || 3001;
 // =====================================================================
 
 // GET /api/produtos  -> lista todos (equivalente ao fetch atual do cardapio.html)
-// GET /api/produtos -> lista todos com suas categorias
 app.get('/api/produtos', async (req, res) => {
     try {
-        const [linhas] = await pool.query(`
-            SELECT
-                p.id,
-                p.nome,
-                p.descricao,
-                p.preco,
-                p.quantidade,
-                p.imagem,
-                p.disponivel,
-                pc.categoria_id
-            FROM produtos p
-            LEFT JOIN produto_categorias pc
-                ON p.id = pc.produto_id
-            ORDER BY p.id
-        `);
-
-        const produtos = [];
-
-        linhas.forEach(linha => {
-            let produto = produtos.find(p => p.id === linha.id);
-
-            if (!produto) {
-                produto = {
-                    id: linha.id,
-                    nome: linha.nome,
-                    descricao: linha.descricao,
-                    preco: linha.preco,
-                    quantidade: linha.quantidade,
-                    imagem: linha.imagem,
-                    disponivel: linha.disponivel,
-                    categorias: []
-                };
-
-                produtos.push(produto);
-            }
-
-            if (linha.categoria_id !== null) {
-                produto.categorias.push(linha.categoria_id);
-            }
-        });
-
-        res.json(produtos);
-
+        const [linhas] = await pool.query(
+            'SELECT * FROM produtos ORDER BY id'
+        );
+        res.json(linhas);
     } catch (erro) {
         console.error(erro);
         res.status(500).json({ erro: 'Erro ao buscar produtos' });
@@ -76,52 +36,17 @@ app.get('/api/produtos', async (req, res) => {
 // GET /api/produtos/:id -> busca um produto específico
 app.get('/api/produtos/:id', async (req, res) => {
     try {
-        const [linhas] = await pool.query(`
-            SELECT
-                p.id,
-                p.nome,
-                p.descricao,
-                p.preco,
-                p.quantidade,
-                p.imagem,
-                p.disponivel,
-                pc.categoria_id
-            FROM produtos p
-            LEFT JOIN produto_categorias pc
-                ON p.id = pc.produto_id
-            WHERE p.id = ?
-        `, [req.params.id]);
-
+        const [linhas] = await pool.query(
+            'SELECT * FROM produtos WHERE id = ?',
+            [req.params.id]
+        );
         if (linhas.length === 0) {
-            return res.status(404).json({
-                erro: 'Produto não encontrado'
-            });
+            return res.status(404).json({ erro: 'Produto não encontrado' });
         }
-
-        const produto = {
-            id: linhas[0].id,
-            nome: linhas[0].nome,
-            descricao: linhas[0].descricao,
-            preco: linhas[0].preco,
-            quantidade: linhas[0].quantidade,
-            imagem: linhas[0].imagem,
-            disponivel: linhas[0].disponivel,
-            categorias: []
-        };
-
-        linhas.forEach(linha => {
-            if (linha.categoria_id !== null) {
-                produto.categorias.push(linha.categoria_id);
-            }
-        });
-
-        res.json(produto);
-
+        res.json(linhas[0]);
     } catch (erro) {
         console.error(erro);
-        res.status(500).json({
-            erro: 'Erro ao buscar produto'
-        });
+        res.status(500).json({ erro: 'Erro ao buscar produto' });
     }
 });
 

@@ -13,6 +13,7 @@ const pool = mysql.createPool({
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
+    charset: 'utf8mb4',
     waitForConnections: true, // se todas as conexões do pool estiverem ocupadas, espera uma liberar
     connectionLimit: 10,      // no máximo 10 conexões simultâneas (suficiente para um teste local)
     queueLimit: 0             // 0 = fila ilimitada de requisições esperando conexão
