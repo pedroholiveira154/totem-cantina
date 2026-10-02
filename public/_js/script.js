@@ -368,10 +368,6 @@ async function pagar() {
 // FUNCOES - PAGAR
 // // =============================================
 
-if (pg_finalizar) {
-
-}
-
 async function terminaPedido() {
     try {
         const mensagem = document.getElementById("mensagem");

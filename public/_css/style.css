@@ -82,6 +82,11 @@ INDEX
 ================================= 
 */
 
+#pg-index{
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
 .index-conteudo {
   position: relative;
   /* necessário para z-index funcionar */
@@ -99,7 +104,11 @@ INDEX
   height: 600px;
   top: -120px;
   background: red;
-  clip-path: polygon(0 0, 0 100%, 130% 0);
+  clip-path: polygon(
+    0 0,       /* canto superior esquerdo */
+    0 70%,    /* canto inferior esquerdo */
+    140% 0     /* 130% para a direita, no topo */
+);
   pointer-events: none;
 }
 
@@ -112,24 +121,27 @@ INDEX
 
 .header-principal #cantina {
   color: white;
-  font-size: clamp(3rem, 10vw, 8rem);
+  font-size: clamp(3rem, 10vw, 4rem);
   font-style: italic;
   text-shadow: #A50000 13px 7px 2px;
 }
 
 .index-caixa-branca {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 540px;
-  height: 155px;
-  background-color: white;
-  border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: min(90%, 450px);
+    padding: clamp(0.5rem, 10vw, 1rem);
+    margin: 0 auto;
+
+    background-color: white;
+    border-radius: 7px;
 }
 
 #senai-img {
-  width: 500px;
-  margin: 5px;
+    width: clamp(300px, 20vw, 400px);
+    height: auto;
 }
 
 .quadrado-vermelho {
@@ -159,7 +171,7 @@ INDEX
   justify-content: center;
   text-align: center;
   gap: 50px;
-  margin-top: 50px;
+  margin-bottom: 5px;
 }
 
 .index-caixa-pedido form {
@@ -168,10 +180,10 @@ INDEX
 
 .index-caixa-pedido h1 {
   font-weight: bold;
-  font-size: clamp(50px, 11.7vw, 100px);
+  font-size: clamp(30px, 10vw, 80px);
   color: #A50000;
   text-shadow: rgb(187, 183, 183) -4px -3px 3px;
-  transform: rotate(-5deg);
+  transform: rotate(-3deg);
   transform-origin: center;
 }
 
@@ -256,6 +268,7 @@ INDEX
   position: relative;
   /* sobreposição */
   flex-shrink: 0;
+  margin-top: -12rem;
 }
 
 .index-comidas-agrupadas img:nth-child(1) {
@@ -499,6 +512,7 @@ li.ativo {
 
 footer {
   display: flex;
+
   flex-direction: column;
   align-items: flex-end;
   background-color: white;
