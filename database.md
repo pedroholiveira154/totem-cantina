@@ -27,7 +27,7 @@ __________________________________________________________________________
 
  - No CMD digite:
  - "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe" -u root -p 
- ### Insira a senha do root (do Senai é "admin")
+ ### Insira a senha do root ("admin")
 
  USE nome_do_banco;
  SHOW TABLES;
