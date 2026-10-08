@@ -3,52 +3,51 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <title>Cardapio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cantina - Cardápio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="_css/style.css">
 </head>
 
-<body id="pagina-cardapio">
-    <header>
-        <div class="triangulo-vermelho"></div>
-        <div class="index-conteudo">
-            <div class="header-principal">
-                <h1 id="cantina">CANTINA</h1>
-                <div class="index-caixa-branca">
-                    <img src="img/senai.jpg" alt="" id="senai-img">
-                </div>
+<body id="pagina-cardapio" class="pagina-etapa">
+    <header class="cabecalho">
+        <div class="triangulo-vermelho" aria-hidden="true"></div>
+        <div class="conteudo-cabecalho">
+            <p class="marca-cantina">CANTINA</p>
+            <div class="moldura-logo">
+                <img src="img/senai.jpg" alt="SENAI" class="logo-senai">
             </div>
+        </div>
     </header>
 
-    <main>
-        <div class="caixaSubPrincipal">
-            <div class="cardapio-header">
-                <h1>Olá, <span id="nome-cliente"></span><span id="exclamacao">!!!</span> </h1>
-                <button onclick="retornar()" class="btn-voltar">Voltar</button>
-            </div>
+    <main class="painel-pagina">
+        <div class="barra-superior">
+            <h1>Olá, <span id="nome-cliente"></span><span id="exclamacao">!!!</span></h1>
+            <button type="button" onclick="retornar()" class="botao-voltar">Voltar</button>
+        </div>
 
-            <div class="cardapio-conteudo">
-                <aside class="cardapio-sidebar">
-                    <!-- <p>Categorias</p> -->
-                    <ul>
-                        <li class="ativo" data-categoria="4">Mais Vendidos</li>
-                        <li data-categoria="5">Lançamentos</li>
-                        <li data-categoria="1">Salgados</li>
-                        <li data-categoria="2">Bebidas</li>
-                        <li data-categoria="3">Sobremesas</li>
-                    </ul>
-                </aside>
-                
-                <div class="cardapio">
-                    <div id="cardapio"></div>
-                </div>
-            </div>
+        <div class="area-cardapio">
+            <nav class="menu-categorias" aria-label="Categorias do cardápio">
+                <ul>
+                    <li class="ativo" data-categoria="4">Mais Vendidos</li>
+                    <li data-categoria="5">Lançamentos</li>
+                    <li data-categoria="1">Salgados</li>
+                    <li data-categoria="2">Bebidas</li>
+                    <li data-categoria="3">Sobremesas</li>
+                </ul>
+            </nav>
+
+            <!-- Os cards de produto são criados pelo script.js -->
+            <div id="grade-produtos"></div>
         </div>
     </main>
 
-    <footer id="cardapioFooter">
-        <button onclick="direcionarPedido()">IR AO CARRINHO</button>
-    </footer>
+    <div class="barra-acao" id="barra-acao-cardapio">
+        <button type="button" class="botao-acao" onclick="direcionarPedido()">IR AO CARRINHO</button>
+    </div>
 
     <script src="_js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

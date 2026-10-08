@@ -1,177 +1,322 @@
-/* =========================
-   DESKTOP
-========================= */
-* {
-  padding: 0;
-  margin: 0;
-  font-family: "Montserrat", sans-serif;
-  box-sizing: border-box;
-}
+/* ==========================================================================
+   TOTEM CANTINA - VERSÃO DE TESTE
 
-main {
-  position: relative;
-  /* contexto de empilhamento para os filhos */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
+   Índice
+   1. Variáveis e base
+   2. Cabeçalho (comum a todas as páginas)
+   3. Componentes comuns (painéis, barra superior, botões)
+   4. Página inicial
+   5. Cardápio
+   6. Pedido
+   7. Pagamento
+   8. Finalização
+   9. Ajustes por tamanho de tela
 
-html {
-  overflow-x: hidden;
-}
+   Princípios desta versão:
+   - tamanhos fluidos com clamp(), min(), vw, vh e rem;
+   - nas páginas de etapa (cardápio, pedido, pagamento, finalização) a tela
+     nunca rola inteira: só a área de conteúdo rola, e a barra de ação
+     (IR AO CARRINHO / PAGAR) fica sempre visível na parte de baixo.
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. VARIÁVEIS E BASE
+   ========================================================================== */
 
 :root {
-  --borda-sombra: inset 0px 4px 8px rgba(0, 0, 0, 0.3);
+  /* cores do projeto original */
+  --vermelho: #ff0000;
+  --vermelho-botao: #ff0d0d;
+  --vermelho-botao-hover: #d41414;
+  --vermelho-botao-ativo: #bd1212;
+  --vermelho-escuro: #a50000;
+  --vinho: #7c0000;
+  --cinza-borda: #c8c8c8;
+
+  --sombra-interna: inset 0px 4px 8px rgba(0, 0, 0, 0.3);
+
+  /* espaçamentos fluidos (crescem com a menor dimensão da tela) */
+  --espaco-p: clamp(0.5rem, 1.5vmin, 0.75rem);
+  --espaco-m: clamp(0.75rem, 2.5vmin, 1.5rem);
+  --margem-lateral: clamp(1rem, 4vw, 3rem);
 }
 
-.caixaPrincipal {
-  background-color: white;
-  border-radius: 1.2rem;
-  border: solid 1px #ffffff8e;
-  box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.3);
-  margin: clamp(1rem, 5vw, 2rem) auto;
-  min-height: 600px;
-  min-width: 700px;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
+body {
+  font-family: "Montserrat", system-ui, sans-serif;
+  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-
+  background-color: #fff;
 }
 
-.caixaSubPrincipal {
+button,
+input,
+select {
+  font-family: inherit;
+}
+
+/* Texto lido por leitores de tela, sem aparecer na tela */
+.somente-leitor-tela {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Páginas de etapa: ocupam exatamente a altura da tela */
+.pagina-etapa {
+  height: 100vh;
+  height: 100dvh;
+}
+
+
+/* ==========================================================================
+   2. CABEÇALHO
+   ========================================================================== */
+
+.cabecalho {
+  position: relative;
+  flex: none;
+  overflow: hidden;
+}
+
+/* Triângulo vermelho: acompanha a altura do cabeçalho em qualquer tela */
+.triangulo-vermelho {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: var(--vermelho);
+  clip-path: polygon(0 0, 0 190%, 100% 0);
+  pointer-events: none;
+}
+
+.conteudo-cabecalho {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--espaco-p) var(--espaco-m);
+  padding: var(--espaco-p) var(--margem-lateral);
+}
+
+.marca-cantina {
+  color: white;
+  font-weight: bold;
+  font-style: italic;
+  font-size: clamp(1.75rem, 3vmin + 0.75rem, 2.75rem);
+  line-height: 1.1;
+  text-shadow: 0.2em 0.11em 2px var(--vermelho-escuro);
+}
+
+.moldura-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(0.35rem, 1.2vmin, 0.6rem);
   background-color: white;
-  box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.3);
+  border-radius: 7px;
+}
+
+.logo-senai {
+  display: block;
+  width: clamp(7rem, 16vw, 14rem);
+  height: auto;
+}
+
+
+/* ==========================================================================
+   3. COMPONENTES COMUNS
+   ========================================================================== */
+
+/* Fundo branco que ocupa o espaço entre o cabeçalho e a barra de ação */
+.painel-pagina {
+  flex: 1;
+  min-height: 0;
   width: 100%;
   display: flex;
-  justify-content: center;
   flex-direction: column;
-  align-items: center;
+  background-color: white;
+  box-shadow: var(--sombra-interna);
 }
 
-.btn-voltar {
+/* Linha superior das etapas: saudação/título + botão Voltar */
+.barra-superior {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-m);
+  padding: var(--espaco-p) var(--margem-lateral);
+}
+
+.barra-superior h1 {
+  color: var(--vinho);
+  font-size: clamp(1.4rem, 2.5vw + 0.6rem, 2.5rem);
+  line-height: 1.15;
+}
+
+.botao-voltar {
   margin-left: auto;
-  font-size: 1.5em;
+  min-height: 2.75rem;
+  padding: 0.4rem 1.25rem;
+  font-size: clamp(1rem, 1vw + 0.6rem, 1.4rem);
   font-weight: bold;
   background-color: white;
   border: solid 1px #ffffff8e;
   border-radius: 10px;
-  box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--sombra-interna);
+  cursor: pointer;
 }
 
-.btn-pagamentoEpagar {
-  font-size: 1.5rem;
-  background-color: red;
+.botao-voltar:active {
+  background-color: #eeeeee;
+}
+
+/* Cartão central das etapas pedido, pagamento e finalização */
+.painel-etapa {
+  flex: 1;
+  min-height: 0;
+  width: min(100% - 2rem, 56rem);
+  margin: var(--espaco-p) auto var(--espaco-m);
+  padding: var(--espaco-m);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: var(--espaco-p);
+  overflow-y: auto;
+  background-color: white;
+  border: solid 1px #ffffff8e;
+  border-radius: 1.2rem;
+  box-shadow: var(--sombra-interna);
+}
+
+/* Barra de ação fixa na base: sempre visível, sem precisar rolar */
+.barra-acao {
+  flex: none;
+  display: flex;
+  justify-content: flex-end;
+  padding: clamp(0.6rem, 1.8vh, 1.25rem) var(--margem-lateral);
+  background-color: white;
+}
+
+#barra-acao-cardapio {
+  border-top: solid 5px black;
+}
+
+.botao-acao {
+  width: min(28rem, 100%);
+  min-height: clamp(3.25rem, 8vh, 4.5rem);
+  font-size: clamp(1.1rem, 1.2vw + 0.7rem, 1.6rem);
+  font-weight: bold;
   color: white;
+  background-color: var(--vermelho-botao);
   border: none;
-  border-radius: 10px;
-  /* box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.3); */
-  margin: 0 auto;
-  padding: 1.5rem 3rem 1.5rem 3rem;
+  border-radius: 15px;
+  box-shadow: var(--sombra-interna);
+  cursor: pointer;
 }
 
-#lista-produtos{
-    overflow-y: auto;
+.botao-acao:hover {
+  background-color: var(--vermelho-botao-hover);
 }
 
-/* 
-=================================
-INDEX
-================================= 
-*/
-
-#pg-index{
-  overflow-y: hidden;
-  overflow-x: hidden;
+.botao-acao:active {
+  background-color: var(--vermelho-botao-ativo);
 }
 
-.index-conteudo {
-  position: relative;
-  /* necessário para z-index funcionar */
-  z-index: 1;
-  /* maior que o triângulo */
-  width: 100%;
+.botao-voltar:focus-visible,
+.botao-acao:focus-visible,
+.botao-forma-pagamento:focus-visible,
+.card-produto:focus-visible,
+.menu-categorias li:focus-visible {
+  outline: 3px solid #000;
+  outline-offset: 2px;
 }
 
-/* ------------------HEADER PRINCIPAL-------------------- */
-.triangulo-vermelho {
-  position: absolute;
-  /* REMOVA o "position: static" duplicado */
-  z-index: 0;
+
+/* ==========================================================================
+   4. PÁGINA INICIAL
+   ========================================================================== */
+
+#pagina-inicial {
+  /* unidade das imagens de comida: 1rem em telas grandes, encolhe
+     proporcionalmente em telas estreitas ou baixas */
+  --u: min(1rem, 1.27vw, 1.5vh);
+
+  /* altura exata da tela: o que passar da borda inferior é recortado */
+  height: 100vh;
+  height: 100dvh;
+}
+
+/* Na página inicial o triângulo mantém a geometria original (maior que o cabeçalho) */
+#pagina-inicial .cabecalho {
+  overflow: visible;
+}
+
+#pagina-inicial .triangulo-vermelho {
+  inset: auto;
+  top: -120px;
+  left: 0;
   width: 100%;
   height: 600px;
-  top: -120px;
-  background: red;
-  clip-path: polygon(
-    0 0,       /* canto superior esquerdo */
-    0 70%,    /* canto inferior esquerdo */
-    140% 0     /* 130% para a direita, no topo */
-);
-  pointer-events: none;
+  clip-path: polygon(0 0, 0 70%, 140% 0);
 }
 
-.header-principal {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+#pagina-inicial .conteudo-cabecalho {
   flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 0;
 }
 
-.header-principal #cantina {
-  color: white;
-  font-size: clamp(3rem, 10vw, 4rem);
-  font-style: italic;
-  text-shadow: #A50000 13px 7px 2px;
+#pagina-inicial .marca-cantina {
+  font-size: clamp(2rem, 4vmin + 1rem, 4rem);
 }
 
-.index-caixa-branca {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: min(90%, 450px);
-    padding: clamp(0.5rem, 10vw, 1rem);
-    margin: 0 auto;
-
-    background-color: white;
-    border-radius: 7px;
+#pagina-inicial .moldura-logo {
+  padding: clamp(0.35rem, 1.2vmin, 1rem);
 }
 
-#senai-img {
-    width: clamp(300px, 20vw, 400px);
-    height: auto;
+#pagina-inicial .logo-senai {
+  width: clamp(9rem, 20vw, 24rem);
 }
 
-.quadrado-vermelho {
-  position: absolute;
-  bottom: -200px;
-  /* empurra pra fora da tela */
-  left: 50%;
-  transform: translateX(-50%) rotate(-10deg);
-
-  width: 200vw;
-  /* MUITO largo */
-  height: 500px;
-  /* altura do fundo */
-
-  background-color: #A50000;
-  border-radius: 3rem;
-
-  z-index: 0;
-  /* fica atrás */
+#pagina-inicial main {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* recorta as comidas e a faixa vermelha na borda inferior da tela,
+     como o projeto original pretendia */
+  overflow: hidden;
+  padding-top: var(--espaco-m);
 }
 
-/* ----------------INDEX_CAIXA DE PEDIDO-------------------- */
+/* ---------- Caixa de pedido ---------- */
 .index-caixa-pedido {
+  position: relative;
+  z-index: 1;
+  margin-block: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  gap: 50px;
-  margin-bottom: 5px;
+  gap: clamp(1rem, 4vh, 3.125rem);
 }
 
 .index-caixa-pedido form {
@@ -180,8 +325,8 @@ INDEX
 
 .index-caixa-pedido h1 {
   font-weight: bold;
-  font-size: clamp(30px, 10vw, 80px);
-  color: #A50000;
+  font-size: clamp(1.75rem, min(9vw, 8.5vh), 5rem);
+  color: var(--vermelho-escuro);
   text-shadow: rgb(187, 183, 183) -4px -3px 3px;
   transform: rotate(-3deg);
   transform-origin: center;
@@ -189,562 +334,513 @@ INDEX
 
 .index-caixa-pedido-superior {
   width: 100%;
-
-  background-image: linear-gradient(to bottom,
-      #929393,
-      #2D2D2D);
-
-  border-radius: 1.3rem 1.3rem 0 0;
-
-  color: white;
-
-  padding: 3rem 2rem;
-
-  font-weight: bold;
-
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: clamp(1.25rem, 4vh, 3rem) clamp(1rem, 4vw, 2rem);
+  color: white;
+  font-weight: bold;
+  background-image: linear-gradient(to bottom, #929393, #2d2d2d);
+  border-radius: 1.3rem 1.3rem 0 0;
 }
 
 .index-caixa-pedido-superior p {
-  font-size: 2rem;
+  font-size: clamp(1.1rem, 3.2vh, 2rem);
 }
 
 .index-caixa-pedido-superior input {
+  width: min(100%, 10em);
+  margin-bottom: clamp(0.75rem, 2vh, 1.25em);
+  padding: clamp(0.6rem, 1.6vh, 1rem);
   text-align: center;
-
+  font-size: clamp(1.1rem, 3vh, 1.7rem);
+  color: white;
   background-color: #000000b0;
   border-radius: 1.1em;
-  font-size: 1.7rem;
-  padding: 1rem;
-  width: 10em;
-  color: white;
-  margin-bottom: 1.25em;
 }
 
 .index-caixa-pedido-inferior {
   display: flex;
   justify-content: center;
-  text-align: center;
   align-items: center;
-
   width: 100%;
 }
 
 .index-caixa-pedido-inferior button {
   width: 100%;
-  height: 4rem;
-
-  background-image: linear-gradient(to bottom,
-      #000000e3,
-      #FF0D0D);
-
-  color: white;
+  height: clamp(3.25rem, 8vh, 4rem);
+  font-size: clamp(1.3rem, 3.4vh, 1.8rem);
   font-weight: bold;
-
-  border-radius: 0 0 1.3rem 1.3rem;
-
+  color: white;
+  background-image: linear-gradient(to bottom, #000000e3, var(--vermelho-botao));
   border: none;
+  border-radius: 0 0 1.3rem 1.3rem;
   cursor: pointer;
-
-  font-size: 1.8rem;
 }
 
-/* ----------INDEX_COMIDAS NO FINAL DA PÁGINA----------- */
+/* ---------- Comidas decorativas ---------- */
 .index-comidas-agrupadas {
   position: relative;
   z-index: 2;
-
+  flex: none;
   display: flex;
   justify-content: center;
   align-items: flex-end;
-
   width: 100%;
-  gap: 20px;
+  gap: calc(var(--u) * 1.25);
+  /* decoração não pode interceptar o toque no botão INICIAR PEDIDO */
+  pointer-events: none;
 }
 
 .index-comidas-agrupadas img {
   position: relative;
-  /* sobreposição */
   flex-shrink: 0;
-  margin-top: -12rem;
+  /* sobe as imagens para junto do formulário (no original: -12rem; aqui -11u para não tocar o botão) */
+  margin-top: calc(var(--u) * -11);
 }
 
 .index-comidas-agrupadas img:nth-child(1) {
   z-index: 1;
-  width: 17.5rem;
+  width: calc(var(--u) * 17.5);
   transform: rotate(-15deg);
-  margin-right: -200px;
-  margin-bottom: 60px;
+  margin-right: calc(var(--u) * -12.5);
+  margin-bottom: calc(var(--u) * 3.75);
 }
 
 .index-comidas-agrupadas img:nth-child(2) {
   z-index: 2;
-  width: 39rem;
-  margin-left: -200px;
+  width: calc(var(--u) * 39);
+  margin-left: calc(var(--u) * -12.5);
 }
 
 .index-comidas-agrupadas img:nth-child(3) {
   z-index: 3;
-  width: 32rem;
-  margin-left: -300px;
+  width: calc(var(--u) * 32);
+  margin-left: calc(var(--u) * -18.75);
 }
 
 .index-comidas-agrupadas img:nth-child(4) {
   z-index: 2;
-  width: 24rem;
+  width: calc(var(--u) * 24);
   transform: scaleX(-1);
-  margin-left: -200px;
+  margin-left: calc(var(--u) * -12.5);
 }
 
 .index-comidas-agrupadas img:nth-child(5) {
   z-index: 1;
-  width: 22rem;
+  width: calc(var(--u) * 22);
   transform: rotate(15deg);
-  margin-left: -300px;
-  margin-right: -2rem;
-  margin-bottom: 60px;
+  margin-left: calc(var(--u) * -18.75);
+  margin-right: calc(var(--u) * -2);
+  margin-bottom: calc(var(--u) * 3.75);
 }
 
-/* 
-====================================  
-CARDAPIO
-==================================== 
-*/
-/* .cardapio-caixaPrincipal {
-  width: 100%;
-  background-color: white;
-  box-shadow: 60px 16px black;
-} */
-
-.cardapio-header {
-  width: 80%;
-  display: flex;
-  flex-direction: row;
-  font-size: 25px;
-  margin-bottom: 20px;
-  margin-top: 20px;
+/* Faixa vermelha atrás das comidas */
+.quadrado-vermelho {
+  position: absolute;
+  bottom: calc(var(--u) * -12.5);
+  left: 50%;
+  transform: translateX(-50%) rotate(-10deg);
+  width: 200vw;
+  height: calc(var(--u) * 31.25);
+  background-color: var(--vermelho-escuro);
+  border-radius: 3rem;
+  z-index: 0;
+  pointer-events: none;
 }
 
-.cardapio-header h1 {
-  color: #7C0000;
-}
 
-#cardapio {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  grid-auto-rows: max-content;
-  gap: 1rem;
-  flex: 1;
-  overflow-y: auto;
-  height: calc(100vh - 110px);
-  padding: 20px;
-  scroll-behavior: smooth;
-}
-
-#cardapio::-webkit-scrollbar {
-  width: 12px;
-}
-
-#cardapio::-webkit-scrollbar-track {
-  background: #ff000080;
-  border-radius: 15px;
-}
-
-#cardapio::-webkit-scrollbar-thumb {
-  background-color: #bd0202;
-  border-radius: 15px;
-  border: 1px solid #ffffff;
-}
-
-#cardapio::-webkit-scrollbar-thumb:hover {
-  background-color: #640202;
-}
-
-#cardapio img {
-  width: 10rem;
-}
+/* ==========================================================================
+   5. CARDÁPIO
+   ========================================================================== */
 
 #nome-cliente {
   font-weight: bold;
 }
 
 #exclamacao {
-  color: #FF0000;
+  color: var(--vermelho);
 }
 
-.cardapio-conteudo {
-  display: flex;
-  flex-direction: row;
-}
-
-.cardapio-sidebar {
-  display: flex;
-  flex-direction: column;
-
-  height: calc(100vh - 110px);
-  gap: 20px;
-}
-
-.cardapio-sidebar ul {
-  padding: 0;
-  margin: 0;
-
+/* Categorias à esquerda, produtos à direita */
+.area-cardapio {
   flex: 1;
+  min-height: 0;
+  width: min(100% - 2rem, 90rem);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--espaco-m);
+  padding-bottom: var(--espaco-p);
+}
 
+.menu-categorias {
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.menu-categorias ul {
   display: flex;
   flex-direction: column;
-
-  gap: clamp(20px, 10vw, 40px);
-}
-
-.cardapio-sidebar li {
+  gap: clamp(0.5rem, 2.5vh, 2.5rem);
   list-style: none;
+}
 
-  padding: 1.5rem 3rem;
-
-  cursor: pointer;
-
-  transition: background 0.2s ease;
-
-  font-size: 20px;
-
-  text-transform: uppercase;
-
+.menu-categorias li {
+  display: flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: clamp(0.75rem, 2vh, 1.5rem) clamp(1rem, 2.5vw, 3rem);
+  font-size: clamp(0.9rem, 0.8vw + 0.55rem, 1.25rem);
   font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s ease;
 }
 
-li.ativo {
-  background-color: #FF0000;
+.menu-categorias li.ativo {
   color: white;
-  border-radius: 20px;
   font-weight: bolder;
+  background-color: var(--vermelho);
+  border-radius: 20px;
 }
 
-/* .cardapio-sidebar p {
-  color: #FF0000;
-  font-size: 40px;
-} */
+/* Grade de produtos: é a única área do cardápio que rola */
+#grade-produtos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(clamp(9rem, 26vw, 13.5rem), 1fr));
+  grid-auto-rows: max-content;
+  align-content: start;
+  gap: clamp(0.75rem, 2vw, 1.25rem);
+  min-height: 0;
+  padding: clamp(0.5rem, 1.5vw, 1.25rem);
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
 
+#grade-produtos::-webkit-scrollbar {
+  width: 12px;
+}
 
-.produtoCard {
-  color: #7c0000;
-  background-color: #ffffff;
+#grade-produtos::-webkit-scrollbar-track {
+  background: #ff000080;
+  border-radius: 15px;
+}
 
-  padding: 0;
-  height: clamp(18.75rem, 10vw, 10rem);
+#grade-produtos::-webkit-scrollbar-thumb {
+  background-color: #bd0202;
+  border-radius: 15px;
+  border: 1px solid #ffffff;
+}
 
-  border: 2px solid #c8c8c8;
+#grade-produtos::-webkit-scrollbar-thumb:hover {
+  background-color: #640202;
+}
+
+/* ---------- Card de produto ---------- */
+.card-produto {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  color: var(--vinho);
+  background-color: white;
+  border: 2px solid var(--cinza-borda);
   border-radius: 1rem;
-
   box-shadow:
     0 2px 5px rgba(0, 0, 0, 0.28),
     0 5px 0 #9e0000;
-
   overflow: hidden;
-
+  cursor: pointer;
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease;
 }
 
-.produtoCard:hover{
-      cursor: pointer;
-
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 4px 8px rgba(0, 0, 0, 0.28),
-        0 6px 0 #9e0000;
+.card-produto:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.28),
+    0 6px 0 #9e0000;
 }
 
-.produto-cima {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
-
-    background-color: #ffffff;
-
-    border-bottom: 2px solid #cfcfcf;
-
-    padding: 1.5rem;
+.card-produto:active {
+  transform: translateY(1px);
 }
 
-.produto-cima img {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  max-width: 206px;
-  aspect-ratio: 1 / 1;
+.produto-identificacao {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  padding: clamp(0.6rem, 1.6vw, 1.5rem);
+  text-align: center;
+  border-bottom: 2px solid #cfcfcf;
+}
+
+.produto-identificacao img {
   display: block;
-}
-
-.produto-baixo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
-
-    background-color: #ffffff;
-
-    border: none;
-
-    padding: 0.7rem 1rem;
-}
-
-.produto-baixo p {
-  font-size: 1em;
+  width: 100%;
+  max-width: 12.875rem;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
 }
 
 .nome-produto {
-  font-size: 1em;
+  font-size: clamp(0.9rem, 0.3vw + 0.8rem, 1.05rem);
   font-weight: bold;
 }
 
-.produto-preco {
+.produto-valor {
+  padding: 0.7rem 1rem;
+  text-align: center;
+  font-size: clamp(0.8rem, 0.3vw + 0.7rem, 1rem);
+}
+
+.preco-produto {
   font-size: 1.1em;
   font-weight: bold;
 }
 
-footer {
-  display: flex;
 
-  flex-direction: column;
-  align-items: flex-end;
-  background-color: white;
-  z-index: 3;
-  padding: clamp(2rem, 5vw, 10rem);
+/* ==========================================================================
+   6. PEDIDO
+   ========================================================================== */
+
+/* Só a lista de itens rola; o total e o botão PAGAR continuam visíveis */
+#lista-produtos {
+  flex: 0 1 auto;
+  width: 100%;
+  min-height: 0;
+  overflow-y: auto;
 }
 
-footer button {
-  background-color: #FF0D0D;
-  color: white;
-  width: min(450px, 100%);
-  min-height: 70px;
-  font-size: 25px;
-  font-weight: bold;
-  border: none;
-  border-radius: 15px;
-  box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-footer button:hover {
-  background-color: rgb(212, 20, 20);
-}
-
-footer button:active {
-  background-color: rgb(189, 18, 18);
-}
-
-#cardapioFooter {
-  border-top: solid 5px black;
-}
-
-
-
-/* 
-=======================
-        PAGAMENTO
-=======================
-*/
-
-.caixa-precoTotal {
+.item-pedido {
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  gap: 0.75rem;
+  margin: 0.4rem 0;
+  color: var(--vermelho-escuro);
 }
 
-.caixa-precoTotal p {
-  color: #FF0000;
-  font-size: 50px;
+.remover-item-pedido {
+  flex: none;
 }
 
-#opcoesPagamento {
+.botao-remover-item {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(2, 100px);
-  gap: 1.02rem;
-  margin: 50px;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  background-color: white;
+  border: 1px solid var(--cinza-borda);
+  border-radius: 10px;
+  cursor: pointer;
 }
 
-/* Aplica o formato W nas telas (3 em cima, 2 em baixo) */
-#pagamentoDebito {
-  grid-column: 1;
-  grid-row: 1;
+.botao-remover-item img {
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
-#pagamentoCredito {
-  grid-column: 2;
-  grid-row: 2;
-}
-
-#pagamentoDinheiro {
-  grid-column: 3;
-  grid-row: 1;
-}
-
-#pagamentoPix {
-  grid-column: 4;
-  grid-row: 2;
-}
-
-#pagamentoValeR {
-  grid-column: 5;
-  grid-row: 1;
-}
-
-.formaPagamento {
-  background-color: #FF0000;
-  color: white;
-  font-size: 20px;
-  width: 150px;
-  height: 150px;
-  border: none;
-  border-radius: 17%;
-}
-
-.formaPagamento:active {
-  background-color: #920000;
-}
-
-/* 
-=======================
-        PEDIDO
-=======================
-*/
-
-.pedido {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  margin: 10px;
-  align-items: center;
-  color: #A50000;
+.botao-remover-item:active {
+  background-color: #eeeeee;
 }
 
 .descricao-pedido {
+  flex: 1;
   display: flex;
-  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  gap: 20px;
-  font-size: clamp(20px, 5vw, 25px);
+  gap: 1rem;
+  font-size: clamp(1.1rem, 1vw + 0.8rem, 2rem);
 }
 
 .descricao-pedido h2 {
+  font-size: 1em;
   font-weight: 500;
 }
 
 .preco-pedido {
   font-weight: 700;
+  white-space: nowrap;
 }
 
-/* =========================
-TABLET
-========================= */
+/* Total (ícone do carrinho + valor), usado em pedido e pagamento */
+#preco-total {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-@media (max-width: 1024px) {
+#preco-total .icone-carrinho {
+  width: clamp(2.5rem, 7vh, 6.25rem);
+  height: auto;
+  aspect-ratio: 1 / 1;
+}
 
-  .index-comidas-agrupadas {
-    transform: scale(0.75);
-    transform-origin: center bottom;
+#preco-total h1 {
+  font-size: clamp(1.5rem, 4.5vh, 2rem);
+}
+
+
+/* ==========================================================================
+   7. PAGAMENTO
+   ========================================================================== */
+
+#resumo-total-pagamento {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+#resumo-total-pagamento p {
+  color: var(--vermelho);
+  font-size: clamp(1.1rem, min(2.2vw + 0.5rem, 3.6vh), 2rem);
+}
+
+/* Celular: 2 colunas simples */
+#opcoes-pagamento {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.5rem, 1.5vw, 1.02rem);
+  width: min(100%, 52rem);
+}
+
+.botao-forma-pagamento {
+  min-height: 4.25rem;
+  font-size: clamp(0.95rem, 1.2vw + 0.5rem, 1.25rem);
+  color: white;
+  background-color: var(--vermelho);
+  border: none;
+  border-radius: 17%;
+  cursor: pointer;
+}
+
+.botao-forma-pagamento:active {
+  background-color: #920000;
+}
+
+
+/* ==========================================================================
+   8. FINALIZAÇÃO
+   ========================================================================== */
+
+#pagina-finalizar .painel-etapa {
+  justify-content: center;
+  gap: var(--espaco-m);
+  text-align: center;
+}
+
+#pagina-finalizar h1 {
+  font-size: clamp(1.6rem, 4vw + 0.6rem, 3rem);
+}
+
+#mensagem {
+  font-size: clamp(1rem, 1.4vw + 0.5rem, 1.5rem);
+}
+
+
+/* ==========================================================================
+   9. AJUSTES POR TAMANHO DE TELA
+   ========================================================================== */
+
+/* Tablet e telas maiores: pagamento no formato "W" (3 em cima, 2 embaixo) */
+@media (min-width: 640px) {
+  #opcoes-pagamento {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-rows: repeat(2, auto);
   }
 
-  #cardapio {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .botao-forma-pagamento {
+    width: 100%;
+    max-width: min(9.375rem, 15vh);
+    min-height: 0;
+    aspect-ratio: 1 / 1;
+    justify-self: center;
   }
 
-  .cardapio-sidebar li {
-    padding: 1.5rem;
-    font-size: 1rem;
+  #pagamento-debito {
+    grid-column: 1;
+    grid-row: 1;
   }
 
-  .formaPagamento {
-    width: 120px;
-    height: 120px;
-    font-size: 1rem;
+  #pagamento-credito {
+    grid-column: 2;
+    grid-row: 2;
   }
 
-  #opcoesPagamento {
+  #pagamento-dinheiro {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  #pagamento-pix {
+    grid-column: 4;
+    grid-row: 2;
+  }
+
+  #pagamento-vale-refeicao {
+    grid-column: 5;
+    grid-row: 1;
+  }
+}
+
+/* Celular: categorias viram uma faixa horizontal acima dos produtos */
+@media (max-width: 700px) {
+  .area-cardapio {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr);
+    gap: 0.25rem;
+  }
+
+  .menu-categorias {
+    overflow: visible;
+  }
+
+  .menu-categorias ul {
+    flex-direction: row;
     gap: 0.5rem;
-    margin: 2rem;
+    overflow-x: auto;
+    padding: 0.25rem 0.25rem 0.5rem;
   }
 
+  .menu-categorias li {
+    flex: none;
+    white-space: nowrap;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+  }
+
+  .barra-acao {
+    justify-content: stretch;
+  }
+
+  .botao-acao {
+    width: 100%;
+  }
 }
 
-#pagina-cadastro .caixaPrincipal {
-width: 90%;
-max-width: 600px;
-margin: 40px auto;
-padding: 35px;
-background-color: white;
-border-radius: 15px;
-box-sizing: border-box;
-}
+/* Telas baixas (celular na horizontal, notebook pequeno): cabeçalho mais enxuto */
+@media (max-height: 560px) {
+  #pagina-inicial {
+    height: auto;
+    min-height: 100dvh;
+  }
 
-#pagina-cadastro .caixaPrincipal h1 {
-text-align: center;
-margin-bottom: 30px;
-font-family: "Montserrat", sans-serif;
-}
+  .marca-cantina {
+    font-size: 1.5rem;
+  }
 
-#pagina-cadastro #formCadastro {
-display: flex;
-flex-direction: column;
-gap: 18px;
-}
+  .logo-senai {
+    width: 6rem;
+  }
 
-#pagina-cadastro .campoCadastro {
-display: flex;
-flex-direction: column;
-gap: 7px;
-}
-
-#pagina-cadastro .campoCadastro label {
-font-family: "Montserrat", sans-serif;
-font-weight: 600;
-font-size: 15px;
-}
-
-#pagina-cadastro .campoCadastro input {
-width: 100%;
-height: 45px;
-padding: 0 15px;
-border: 1px solid #ccc;
-border-radius: 8px;
-box-sizing: border-box;
-font-family: "Montserrat", sans-serif;
-font-size: 14px;
-outline: none;
-}
-
-#pagina-cadastro .campoCadastro input:focus {
-border-color: #e30613;
-}
-
-#pagina-cadastro .btn-cadastrar {
-width: 100%;
-height: 50px;
-margin-top: 10px;
-border: none;
-border-radius: 8px;
-background-color: #e30613;
-color: white;
-font-family: "Montserrat", sans-serif;
-font-size: 16px;
-font-weight: 700;
-cursor: pointer;
-}
-
-#pagina-cadastro .btn-cadastrar:hover {
-opacity: 0.9;
-}
-
-#pagina-cadastro .cardapio-header {
-display: flex;
-justify-content: flex-start;
+  .conteudo-cabecalho {
+    padding-block: 0.25rem;
+  }
 }
