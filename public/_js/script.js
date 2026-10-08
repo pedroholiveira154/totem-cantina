@@ -1,8 +1,8 @@
 // =============================================
 // REFERÊNCIAS - INDEX
 // =============================================
-const pg_index = document.getElementById('pg-index')
-const input_nome = document.getElementById('nomePedido')
+const pg_index = document.getElementById('pagina-inicial')
+const input_nome = document.getElementById('campo-nome-cliente')
 
 // =============================================
 // REFERÊNCIAS - CARDAPIO
@@ -96,11 +96,10 @@ function formatarPreco(preco) {
 
 function mostrarTotal(total) {
     document.getElementById("preco-total").innerHTML = `
-            <img 
-                id="carrinho" 
+            <img
+                class="icone-carrinho"
                 src="img/imgCompra/carrinho-de-compras.png"
-                width="100px"
-                height="100px"
+                alt=""
             >
             <h1>R$ ${formatarPreco(total)}</h1>
     `;
@@ -128,9 +127,9 @@ async function categoria(){
 if (pg_cardapio) {
 
     let nomeCliente = document.getElementById('nome-cliente');
-    let itens = document.querySelectorAll('.cardapio-sidebar li');
-    let item = document.querySelector('.cardapio-sidebar li.ativo');
-    const cardapio = document.getElementById("cardapio");
+    let itens = document.querySelectorAll('.menu-categorias li');
+    let item = document.querySelector('.menu-categorias li.ativo');
+    const cardapio = document.getElementById("grade-produtos");
 
     nomeCliente.textContent = localStorage.getItem('nomeCliente');
 
@@ -153,33 +152,48 @@ if (pg_cardapio) {
 
         produtosFiltrados.forEach(produto => {
 
-            const item = document.createElement("div");
-            item.className = "produtoCard";
+            // Card clicável: article com role="button" para funcionar também por teclado
+            const item = document.createElement("article");
+            item.className = "card-produto";
+            item.setAttribute("role", "button");
+            item.tabIndex = 0;
 
             item.innerHTML = `
-                <div class="produto-cima">
-                    <img src="${produto.imagem}">
+                <div class="produto-identificacao">
+                    <img src="${produto.imagem}" alt="${produto.nome}">
                     <p class="nome-produto">${produto.nome}</p>
                 </div>
 
-                <div class="produto-baixo">
+                <div class="produto-valor">
                     <p>
                         a partir de <br>
-                        <span class="produto-preco">
-                            R$ ${produto.preco}
+                        <span class="preco-produto">
+                            R$ ${formatarPreco(produto.preco)}
                         </span>
                     </p>
                 </div>
             `;
 
-            item.addEventListener("click", () => {
+            function aoSelecionarProduto() {
 
+                // Aviso fecha sozinho: o cliente não precisa tocar em "OK" a cada produto
                 Swal.fire({
                     icon: "success",
                     title: "Produto adicionado",
+                    timer: 1000,
+                    showConfirmButton: true
                 });
 
                 adicionarAoCarrinho(produto);
+            }
+
+            item.addEventListener("click", aoSelecionarProduto);
+
+            item.addEventListener("keydown", (event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    aoSelecionarProduto();
+                }
             });
 
             cardapio.appendChild(item);
@@ -245,11 +259,14 @@ if (pg_pedido) {
     carrinho.forEach((produto, index) => {
 
         const item = document.createElement("div");
-        item.classList.add("pedido");
+        item.classList.add("item-pedido");
 
         item.innerHTML = `
-            <div class="apagar-pedido">
-                <button onclick="remover(${index})">🗑️</button>
+            <div class="remover-item-pedido">
+                <button type="button" class="botao-remover-item" onclick="remover(${index})"
+                    aria-label="Remover ${produto.nome}">
+                    <img src="img/imgCompra/lixeira-de-reciclagem.png" alt="">
+                </button>
             </div>
 
             <div class="descricao-pedido">

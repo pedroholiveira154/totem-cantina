@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cantina - Início</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
@@ -12,46 +12,45 @@
     <link rel="stylesheet" href="_css/style.css">
 </head>
 
-<body id="pg-index">
-    <header>
-        <div class="triangulo-vermelho"></div>
-        <div class="index-conteudo">
-            <div class="header-principal">
-                <h1 id="cantina">CANTINA</h1>
-                <div class="index-caixa-branca">
-                    <img src="img/senai.jpg" alt="" id="senai-img">
-                </div>
+<body id="pagina-inicial">
+    <header class="cabecalho">
+        <div class="triangulo-vermelho" aria-hidden="true"></div>
+        <div class="conteudo-cabecalho">
+            <p class="marca-cantina">CANTINA</p>
+            <div class="moldura-logo">
+                <img src="img/senai.jpg" alt="SENAI" class="logo-senai">
             </div>
+        </div>
     </header>
 
     <main>
-        <div class='index-caixa-pedido'>
+        <section class="index-caixa-pedido">
             <h1>FAÇA SEU PEDIDO</h1>
             <form>
                 <div class="index-caixa-pedido-superior">
-                    <input type="text" placeholder="Seu Nome" id="nomePedido" required maxlength="20" autocomplete="off">
+                    <input type="text" placeholder="Seu Nome" id="campo-nome-cliente" aria-label="Seu nome" required
+                        maxlength="20" autocomplete="off">
                     <p>INSIRA UM NOME <br> PARA COMEÇAR</p>
                 </div>
                 <div class="index-caixa-pedido-inferior">
-                    <button type="button" id="iniciaPedido" onclick="iniciarPedido()">INICIAR PEDIDO</button>
+                    <button type="button" id="botao-iniciar-pedido" onclick="iniciarPedido()">INICIAR PEDIDO</button>
                 </div>
             </form>
-        </div>
+        </section>
 
-        <div class="index-comidas-agrupadas">
+        <!-- Imagens decorativas: não recebem toque/clique (pointer-events: none no CSS) -->
+        <div class="index-comidas-agrupadas" aria-hidden="true">
             <img src="img/imgIndex/pepsi.jpg" alt="">
             <img src="img/imgIndex/hamburguer.jpg" alt="">
             <img src="img/imgIndex/esfiha.jpg" alt="">
             <img src="img/imgIndex/hotdog.jpg" alt="">
             <img src="img/imgIndex/coca.jpg" alt="">
         </div>
-        <div class="quadrado-vermelho"></div>
-        </div>
+        <div class="quadrado-vermelho" aria-hidden="true"></div>
     </main>
 
     <script src="_js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
-
 
 </html>

@@ -1,185 +1,220 @@
-.corpo {
-    background-color: rgb(37, 35, 35);
+/* ==========================================================================
+   ÁREA ADMINISTRATIVA (login, estoque, cadastro) - VERSÃO DE TESTE
+   Mantém a aparência original (fundo escuro, vermelho, fonte padrão) e
+   troca larguras e alturas fixas por tamanhos que se adaptam à tela.
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+.pagina-admin {
+    margin: 0;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: clamp(0.5rem, 2vw, 1.5rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: url("../img/imgAdmin/FundoAdmin.png") center / cover fixed;
+}
+
+.titulo-painel {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.texto-direitos {
+    margin-top: 1.5rem;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.botao-admin {
+    width: min(21.875rem, 100%);
+    min-height: 5.625rem;
     color: white;
-    width: 320px;
-    border-radius: 12px;
-    height: 400px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-#ttlogin {
-    text-align: center;
-    padding: 40px;
-    font-size: 40px;
-}
-
-#usuario {
+    font-size: 1.125rem;
     background-color: rgb(37, 35, 35);
-    margin-bottom: 25px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.botao-admin:hover {
+    background-color: rgba(165, 42, 42, 0.942);
+}
+
+
+/* ---------- Login ---------- */
+#pagina-login {
+    justify-content: center;
+}
+
+.painel-login {
+    width: min(20rem, 100%);
+    padding: 0 1.25rem 1.5rem;
+    color: white;
+    text-align: center;
+    background-color: rgb(37, 35, 35);
+    border-radius: 12px;
+}
+
+#titulo-login {
+    padding: 2.5rem 0;
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+#usuario,
+#senha {
+    display: block;
+    width: min(16.25rem, 100%);
+    margin: 0 auto 1.5rem;
+    color: aliceblue;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1rem;
+    background-color: rgb(37, 35, 35);
     border: 1px solid rgb(37, 35, 35);
     border-bottom: 1px solid white;
-    width: 260px;
-    color: aliceblue;
-
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 14px;
-}
-
-#usuario::placeholder {
-    color: rgba(255, 255, 255, 0.81);
-}
-
-#usuario:focus{
-    outline: none;
-}
-
-#usuario:focus::placeholder {
-    color: rgba(160, 159, 159, 0.349);
 }
 
 #senha {
-    background-color: rgb(37, 35, 35);
-    margin-bottom: 60px;
-    border: 1px solid rgb(37, 35, 35);
-    border-bottom: 1px solid white;
-    width: 260px;
-    color: aliceblue;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 14px;
+    margin-bottom: 3.5rem;
 }
 
+#usuario::placeholder,
 #senha::placeholder {
     color: rgba(255, 255, 255, 0.81);
 }
 
+#usuario:focus,
 #senha:focus {
     outline: none;
 }
 
+#usuario:focus::placeholder,
 #senha:focus::placeholder {
     color: rgba(160, 159, 159, 0.349);
 }
 
-#botaologin {
-    background-color: rgb(170, 36, 36);
+#botao-login {
+    width: min(11.25rem, 100%);
+    min-height: 2.75rem;
+    margin-bottom: 1.5rem;
     color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.125rem;
+    background-color: rgb(170, 36, 36);
     border: none;
     border-radius: 7px;
-    width: 180px;
-    height: 30px;
-    margin-bottom: 35px;
     cursor: pointer;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 18px;
 }
 
-#botaologin:hover {
+#botao-login:hover {
     background-color: rgba(118, 10, 10, 0.727);
 }
 
-#direitos {
-    font-family: 'Times New Roman', Times, serif;
-}
 
-
-
-/*Estoque*/
-.corpoEstoque {
+/* ---------- Estoque ---------- */
+.area-estoque {
     display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: clamp(1rem, 3vw, 3rem);
+    width: 100%;
 }
 
-
-.produtos {
-    background-color: rgb(37, 35, 35);
+.painel-estoque {
+    width: min(31.25rem, 100%);
+    padding: 0.625rem;
     color: white;
-    width: 500px;
-    border-radius: 12px;
-    height: 100%;
     text-align: center;
-    padding: 10px;
+    background-color: rgb(37, 35, 35);
+    border-radius: 12px;
 }
 
-.produto {
-    display: flex;
-    justify-content: space-around;
+.tabela-estoque {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0.5rem 0.4rem;
 }
 
-#definicoes {
-    font-size: 20px;
+.tabela-estoque th {
+    font-size: 1.25rem;
+    font-weight: normal;
 }
 
-.nome, .estoque, .preco {
+.celula-nome,
+.celula-estoque,
+.celula-preco {
+    padding: 0.4rem 0.625rem;
     background-color: rgb(70, 68, 68);
-    padding-left: 10px;
-    padding-right: 10px;
     border-radius: 7px;
     cursor: pointer;
 }
 
-.nome:hover, .estoque:hover, .preco:hover {
+.celula-nome:hover,
+.celula-estoque:hover,
+.celula-preco:hover {
     background-color: rgba(165, 42, 42, 0.73);
 }
 
-#direitosEstoque {
-    margin-top: 30px;
-    font-size: 18px;
+.acoes-estoque {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.625rem;
+    width: min(22.5rem, 100%);
 }
 
-#bot {
-    background-color: rgb(37, 35, 35);
-    color: white;
-    height: 90px;
-    width: 350px;
-    margin: 10px;
-    border-radius: 10px;
-    border: none;
-    font-size: 18px;
-    cursor: pointer;
+
+/* ---------- Cadastro de produto ---------- */
+.area-cadastro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    width: 100%;
 }
 
-#bot:hover {
-    background-color: rgba(165, 42, 42, 0.942);
+.painel-cadastro-produto {
+    width: min(43.75rem, 100%);
+    padding: clamp(1rem, 4vw, 2.5rem);
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
 }
 
-.corpoCadastro{
-display: flex;
-justify-content: center;
-align-items: center;
-min-height: 100vh;
+.campo {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.25rem;
 }
 
-.cadastroProduto{
-width: 700px;
-background: rgba(255,255,255,0.95);
-border-radius: 20px;
-padding: 40px;
-}
-
-.campo{
-display: flex;
-flex-direction: column;
-margin-bottom: 20px;
-}
-
-.campo label{
-font-size: 18px;
-margin-bottom: 8px;
+.campo label {
+    margin-bottom: 0.5rem;
+    font-size: 1.125rem;
 }
 
 .campo input,
-.campo select{
-height: 45px;
-border: 2px solid #ccc;
-border-radius: 10px;
-padding: 10px;
-font-size: 16px;
+.campo select {
+    height: 2.8rem;
+    padding: 0.625rem;
+    font-size: 1rem;
+    border: 2px solid #ccc;
+    border-radius: 10px;
 }
 
-.botoesCadastro{
-display: flex;
-gap: 20px;
-margin-top: 30px;
+.acoes-cadastro {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    margin-top: 1.875rem;
+}
+
+.acoes-cadastro .botao-admin {
+    flex: 1 1 12rem;
+    width: auto;
 }

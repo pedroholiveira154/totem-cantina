@@ -1,28 +1,26 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - FilaZero</title>
     <link rel="stylesheet" href="_css/admin.css">
-    <title>Login</title>
 </head>
-<body background="img/imgAdmin/FundoAdmin.png">
 
-    <div class="corpo">
-        <h1 id="ttlogin">LOGIN</h1>
+<body id="pagina-login" class="pagina-admin">
 
-        <input id="usuario" type="text" placeholder="👤 Usuário">
+    <main class="painel-login">
+        <h1 id="titulo-login">LOGIN</h1>
 
-        <input id="senha" type="password" placeholder="••• Senha">
+        <input id="usuario" type="text" placeholder="Usuário" aria-label="Usuário" autocomplete="username">
 
-        <br>
+        <input id="senha" type="password" placeholder="Senha" aria-label="Senha" autocomplete="current-password">
 
-        <button id="botaologin" onclick="acessar()">LOGIN</button>
+        <button id="botao-login" type="button" onclick="acessar()">LOGIN</button>
 
-        <p id="direitos">@Todos direitos reservados.</p>
-    </div>
+        <p class="texto-direitos">@Todos direitos reservados.</p>
+    </main>
 
     <script>
         function acessar() {
@@ -37,7 +35,6 @@
         }
     </script>
 
-<body>
-    
 </body>
+
 </html>
