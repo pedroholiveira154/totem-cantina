@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Estoque</title>
+    <title>Estoque</title>
     <link rel="stylesheet" href="/style.css">
-    <style>
+        <style>
         
 * {
     box-sizing: border-box;
@@ -113,37 +113,37 @@ td {
     }
 }
     </style>
-    <script src="/login.js" defer></script>
+    <script src="/estoque.js" defer></script>
 </head>
 <body>
     <main class="container">
         <section class="card">
-            <h1>Entrar no sistema</h1>
-            <p>Informe suas credenciais para acessar o estoque.</p>
+            <header class="cabecalho">
+                <div>
+                    <h1>Estoque</h1>
+                    <p id="usuario-logado">Verificando sessão...</p>
+                </div>
 
-            <form id="pg-login">
-                <label for="usuario">Usuário</label>
-                <input
-                    type="text"
-                    id="usuario"
-                    name="usuario"
-                    autocomplete="username"
-                    maxlength="100"
-                    required
-                >
+                <button type="button" id="btn-sair">
+                    Sair
+                </button>
+            </header>
 
-                <label for="senha">Senha</label>
-                <input
-                    type="password"
-                    id="senha"
-                    name="senha"
-                    autocomplete="current-password"
-                    required
-                >
+            <p id="mensagem" role="status" aria-live="polite"></p>
 
-                <button type="submit" id="btn-login">Entrar</button>
-                <p id="mensagem" role="status" aria-live="polite"></p>
-            </form>
+            <div class="tabela-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Produto</th>
+                            <th>Quantidade</th>
+                            <th>Movimentação</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lista-produtos"></tbody>
+                </table>
+            </div>
         </section>
     </main>
 </body>

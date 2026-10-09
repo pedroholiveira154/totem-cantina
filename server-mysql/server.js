@@ -246,6 +246,62 @@ app.post('/api/pedidos', async (req, res) => {
 });
 
 // =====================================================================
+// ADMINS
+// =====================================================================
+// POST /api/login -> verifica as credenciais do administrador
+app.post('/api/login', async (req, res) => {
+    const { usuario, senha } = req.body;
+
+    // Verifica se os campos foram preenchidos
+    if (!usuario || !senha) {
+        return res.status(400).json({
+            erro: 'Informe o usuário e a senha'
+        });
+    }
+
+    try {
+        // Busca o administrador pelo nome de usuário
+        const [admins] = await pool.query(
+            'SELECT id, usuario, senha FROM admins WHERE usuario = ?',
+            [usuario]
+        );
+
+        // Verifica se o usuário existe
+        if (admins.length === 0) {
+            return res.status(401).json({
+                erro: 'Usuário ou senha inválidos'
+            });
+        }
+
+        const admin = admins[0];
+
+        // COMPARAÇÃO PARA O SEU BANCO DE TESTE ATUAL,
+        // caso as senhas estejam armazenadas em texto puro.
+        if (admin.senha !== senha) {
+            return res.status(401).json({
+                erro: 'Usuário ou senha inválidos'
+            });
+        }
+
+        // Retorna somente os dados necessários, nunca a senha
+        res.json({
+            mensagem: 'Login realizado com sucesso',
+            admin: {
+                id: admin.id,
+                usuario: admin.usuario
+            }
+        });
+
+    } catch (erro) {
+        console.error('Erro ao verificar login:', erro);
+
+        res.status(500).json({
+            erro: 'Erro interno ao realizar login'
+        });
+    }
+});
+
+// =====================================================================
 app.listen(PORT, () => {
     console.log(`API de teste (MySQL) rodando em http://localhost:${PORT}`);
 });
